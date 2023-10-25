@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\SSLCommerz;
 use Exception;
 use App\Models\Invoice;
 use App\Models\ProductCart;
@@ -89,5 +90,32 @@ class InvoiceController extends Controller
         }
     }
 
-    
+
+
+
+
+    public function InvoiceList(Request $request){
+        $user_id = $request->header('id');
+        return Invoice::where('user_id', $user_id)->get();
+    }
+
+    public function InvoiceProductList(Request $request){
+        $user_id = $request->header('id');
+        $invoice_id = $request->invoice_id;
+        return InvoiceProduct::where('user_id'=>$user_id,'invoice_id'=>$invoice_id)->with('product')->get();
+    }
+
+
+    public function PaymentSuccess(Request $request){
+        return SSLCommerz::InitiateSuccess($request->query('tram_id'));
+    }
+    public function PaymentCancel(Request $request){
+        return SSLCommerz::InitiateCancel($request->query('tram_id'));
+    }
+    public function PaymentFail(Request $request){
+        return SSLCommerz::InitiateFail($request->query('tram_id'));
+    }
+    public function PaymentIPN(Request $request){
+        return SSLCommerz::InitiateIPN($request->input('tram_id'),$request->input('status'), $request->input('val_id'));
+    }
 }
