@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+
+
+//backend methods
+
+
 
 //Brand List
 Route::get('/BrandList', [BrandController::class,'BrandList'])->middleware([TokenAuthenticate::class]);
@@ -66,3 +72,14 @@ Route::get('/invoice-product-list/{product_id}', [InvoiceController::class,'Invo
 Route::post('/payment-success', [InvoiceController::class,'PaymentSuccess']);
 Route::post('/payment-calcel', [InvoiceController::class,'PaymentCancel']);
 Route::post('/payment-fail', [InvoiceController::class,'PaymentFail']);
+
+
+//backend methods
+
+
+//frontend methods
+
+Route::get('/', [HomeController::class,'HomePage']);
+Route::get('/CategoryList', [CategoryController::class, 'CategoryList']);
+
+//frontend methods

@@ -1,4 +1,4 @@
- <?php
+<?php
 namespace App\Helper;
 use Exception;
 use App\Models\Invoice;
@@ -24,7 +24,8 @@ class SSLCommerz{
                 "cus_add2"=>$profile->cus_add,
                 "cus_city"=>$profile->cus_city,
                 "cus_state"=>$profile->cus_city,
-                "cus_postcode"=>$profile->"1200",
+
+                "cus_postcode"=>"1200",
                 "cus_country"=>$profile->cus_country,
                 "cus_phone"=>$profile->cus_phone,
                 "cus_fax"=>$profile->cus_phone,
@@ -34,7 +35,7 @@ class SSLCommerz{
                 "ship_add2"=> $profile->ship_add,
                 "ship_city"=> $profile->ship_city,
                 "ship_state"=> $$profile->ship_country,
-                "ship_postcode"=>$profile->"12000",
+                "ship_postcode"=>"12000",
                 "product_name"=>"Apple Shop Product",
                 "product_category"=> "Apple Shop Category",
                 "product_profile"=> "Apple Shop Category",
@@ -69,7 +70,7 @@ class SSLCommerz{
 
 
     static function InitiateIPN($tran_id, $status, $val_id):int{
-        Incoice::where(['tran_id'=>$tran_id,'val_id'=>0])->update(['payment_status'=>$status,'val_id'=>$val_id]);
+        Invoice::where(['tran_id'=>$tran_id,'val_id'=>0])->update(['payment_status'=>$status,'val_id'=>$val_id]);
         return 1;
     }
 }

@@ -102,7 +102,7 @@ class InvoiceController extends Controller
     public function InvoiceProductList(Request $request){
         $user_id = $request->header('id');
         $invoice_id = $request->invoice_id;
-        return InvoiceProduct::where('user_id'=>$user_id,'invoice_id'=>$invoice_id)->with('product')->get();
+        return InvoiceProduct::where(['user_id' => $user_id,'invoice_id'=>$invoice_id])->with('product')->get();
     }
 
 

@@ -13,4 +13,7 @@ class CategoryController extends Controller
         $data = Category::all();
         return ResponseHelper::Out('success',$data,200);
     }
+
+
+
 }
