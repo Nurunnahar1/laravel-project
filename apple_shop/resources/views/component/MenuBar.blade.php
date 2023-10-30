@@ -39,6 +39,10 @@
                             <div class="dropdown-menu">
                                 <ul id="CategoryItem">
 
+
+                                     {{-- <li><a class="dropdown-item nav-link nav_item" href="/by-category?id=${item['id']}"> --}}
+
+
                                 </ul>
                             </div>
                         </li>
@@ -60,4 +64,16 @@
     </div>
 </header>
 
+<script>
 
+
+Category();
+async function Category() {
+    let res = await axios.get("/CategoryList");
+    $("#CategoryItem").empty();
+    res.data['data'].forEach((item, i) => { // Added parentheses here
+        let EachItem = `<li><a class="dropdown-item nav-link nav_item" href="#">${item['categoryName']}</a></li>`;
+        $("#CategoryItem").append(EachItem);
+    });
+}
+</script>
