@@ -19,7 +19,7 @@
 <script>
 
 
-TopCategory();
+
 async function TopCategory() {
     let res = await axios.get("/CategoryList");
     $("#TopCategoryItem").empty();
