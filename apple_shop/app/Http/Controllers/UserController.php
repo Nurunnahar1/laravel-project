@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+
+
+    public function LoginPage()
+    {
+    return view('pages.login-page');
+    }
+
+
+    
     public function UserLogin(Request $request){
         try {
           $UserEmail=$request->UserEmail;
