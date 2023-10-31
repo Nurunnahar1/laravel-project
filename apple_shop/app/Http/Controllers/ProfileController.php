@@ -10,13 +10,19 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     public function CreateProfile(Request $request):JsonResponse{
-        $user_id=$request->header("id");
-        $request->merge(['user_id' => $user_id]);
-        $data = CustomerProfile::updateOrCreate(
-            ['user_id' => $user_id],
-            $request->input()
-        );
-        return ResponseHelper::Out('success', $data, 200);
+        $user_id=$request->header('id');
+
+        // $request->merge(['user_id' =>$user_id]);
+         if ($user_id) {
+         $data = CustomerProfile::updateOrCreate(
+         ['user_id' => $user_id],
+         $request->input()
+         );
+         return ResponseHelper::Out('success', $data, 200);
+         } else {
+         // Handle the case when 'user_id' is not found in the header
+         return ResponseHelper::Out('error', 'user_id not found in headers', 400);
+         }
     }
 
     public function ReadProfile(Request $request):JsonResponse{

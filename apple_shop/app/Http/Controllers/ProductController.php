@@ -102,32 +102,45 @@ class ProductController extends Controller
 
 
 
-    public function CreateCartList(Request $request){
-        $user_id=$request->header('id');
-        $product_id = $request->input('product_id');
-        $color = $request->input('color');
-        $size = $request->input('size');
-        $qty = $request->input('qty');
-        $UnitPrice = 0;
+   public function CreateCartList(Request $request) {
+   $user_id = $request->header('id');
+   $product_id = $request->input('product_id');
+   $color = $request->input('color');
+   $size = $request->input('size');
+   $qty = $request->input('qty');
+   $UnitPrice = 0;
 
-        $productDetails = Product::where('id', '=', $product_id)->first();
-        if($productDetails->discount==1){
-            $UnitPrice = $productDetails->discount_price;
-        }
-        else{
-            $UnitPrice = $productDetails->price;
-        }
+   // Retrieve product details based on product_id
+   $productDetails = Product::where('id', $product_id)->first();
 
+   if ($productDetails) {
+   // Check if 'discount' property exists in $productDetails
+   if (property_exists($productDetails, 'discount') && $productDetails->discount == 1) {
+   $UnitPrice = $productDetails->discount_price;
+   } else {
+   $UnitPrice = $productDetails->price;
+   }
+   $totalPrice = $qty * $UnitPrice;
 
-        $totalPrice = $qty*$UnitPrice;
+   $data = ProductCart::updateOrCreate(
+   ['user_id' => $user_id, 'product_id' => $product_id],
+   [
+   'user_id' => $user_id,
+   'product_id' => $product_id,
+   'color' => $color,
+   'size' => $size,
+   'qty' => $qty,
+   'price' => $totalPrice
+   ]
+   );
 
-        $data = ProductCart::updateOrCreate(
-            ['user_id' => $user_id, 'product_id' => $product_id],
-            ['user_id'=>$user_id, 'product_id'=>$product_id, 'color'=>$color, 'size'=>$size, 'qty'=>$qty, 'price'=>$totalPrice]
-        );
+   return ResponseHelper::Out('success', $data, 200);
+   } else {
+   // Handle the case when the product with the given ID is not found
+   return ResponseHelper::Out('error', 'Product not found', 404);
+   }
+   }
 
-        return ResponseHelper::Out('success',$data, 200);
-    }
 
     public function CreateList(Request $request):JsonResponse{
         $user_id=$request->header('id');

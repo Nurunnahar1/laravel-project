@@ -21,7 +21,7 @@ class UserController extends Controller
     }
 
 
-    
+
     public function UserLogin(Request $request){
         try {
           $UserEmail=$request->UserEmail;
@@ -46,10 +46,11 @@ class UserController extends Controller
         $UserEmail = $request->UserEmail;
         $OTP= $request->OTP;
         $verification = User::where('email',$UserEmail)->where('otp',$OTP)->first();
+        $userId = $verification->id;
 
         if($verification){
             User::where('email',$UserEmail)->where('otp', $OTP)->update(['otp'=>'0']);
-            $token = JWTToken::CreateToken($UserEmail, $verification->id);
+            $token = JWTToken::CreateToken($UserEmail, $userId);
             return ResponseHelper::Out('success','',200)->cookie('token',$token,60*60*24);
 
         }
