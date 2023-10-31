@@ -12,6 +12,22 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
 
+
+// Home Page
+// Route::get('/', [HomeController::class, 'HomePage']);
+Route::get('/by-category', [CategoryController::class, 'ByCategoryPage']);
+Route::get('/by-brand', [BrandController::class, 'ByBrandPage']);
+Route::get('/policy', [PolicyController::class, 'PolicyPage']);
+Route::get('/details', [ProductController::class, 'Details']);
+Route::get('/login', [UserController::class, 'LoginPage']);
+Route::get('/verify', [UserController::class, 'VerifyPage']);
+Route::get('/wish', [ProductController::class, 'WishList']);
+
+
+
+
+
+
 //backend methods
 
 
@@ -31,8 +47,7 @@ Route::get('/ListProductSlider', [ProductController::class,'ListProductSlider'])
 Route::get('/ProductDetailsById/{id}', [ProductController::class,'ProductDetailsById']);
 Route::get('/ListReviewByProduct/{product_id}', [ProductController::class,'ListReviewByProduct']);
 
-//policy
-Route::get('/PolicyByType/{type}', [PolicyController::class,'PolicyByType']);
+ 
 
 
 //user Auth
@@ -79,7 +94,7 @@ Route::post('/payment-fail', [InvoiceController::class,'PaymentFail']);
 
 //frontend methods
 
-Route::get('/', [HomeController::class,'HomePage']);
+
 Route::get('/CategoryList', [CategoryController::class, 'CategoryList']);
 
 // Brand List
@@ -104,12 +119,3 @@ Route::get("/PolicyByType/{type}",[PolicyController::class,'PolicyByType']);
 //frontend methods
 
 
-// Home Page
-Route::get('/', [HomeController::class, 'HomePage']);
-Route::get('/by-category', [CategoryController::class, 'ByCategoryPage']);
-Route::get('/by-brand', [BrandController::class, 'ByBrandPage']);
-Route::get('/policy', [PolicyController::class, 'PolicyPage']);
-Route::get('/details', [ProductController::class, 'Details']);
-Route::get('/login', [UserController::class, 'LoginPage']);
-Route::get('/verify', [UserController::class, 'VerifyPage']);
-Route::get('/wish', [ProductController::class, 'WishList']);
