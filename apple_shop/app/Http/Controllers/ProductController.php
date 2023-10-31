@@ -15,6 +15,15 @@ use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
+
+
+ public function Details()
+ {
+ return view('pages.details-page');
+ }
+
+
+
     public function ListProductByCategory(Request $request):JsonResponse{
         $data = Product::where('category_id', $request->id)->with('brand', 'category')->get();
         return ResponseHelper::Out('success',$data, 200);
@@ -53,7 +62,7 @@ class ProductController extends Controller
                 ['customer_id'=>$profile->id, 'product_id'=>$request->input('product_id')],
                 $request->input()
             );
-            
+
             return ResponseHelper::Out('success',$data, 200);
         }
         else{

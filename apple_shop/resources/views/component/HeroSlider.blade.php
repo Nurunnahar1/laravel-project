@@ -14,7 +14,7 @@
 
 
 <script>
-     
+
     async function Hero() {
         let res = await axios.get("/ListProductSlider");
         $("#carouselSection").empty();
@@ -31,7 +31,7 @@
                                 <div class="banner_content overflow-hidden">
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="slideInLeft" data-animation-delay="0.5s">${item['price']}</h5>
                                     <h2 class="staggered-animation" data-animation="slideInLeft" data-animation-delay="1s">${item['title']}</h2>
-                                    <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase" href="#" data-animation="slideInLeft" data-animation-delay="1.5s">Shop Now</a>
+                                    <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase" href="/details?id=${item['id']}" data-animation="slideInLeft" data-animation-delay="1.5s">Shop Now</a>
                                 </div>
                             </div>
                         </div>

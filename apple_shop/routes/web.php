@@ -14,7 +14,7 @@ use App\Http\Controllers\CategoryController;
 
 
 // Home Page
-// Route::get('/', [HomeController::class, 'HomePage']);
+Route::get('/', [HomeController::class, 'HomePage']);
 Route::get('/by-category', [CategoryController::class, 'ByCategoryPage']);
 Route::get('/by-brand', [BrandController::class, 'ByBrandPage']);
 Route::get('/policy', [PolicyController::class, 'PolicyPage']);
@@ -47,7 +47,7 @@ Route::get('/ListProductSlider', [ProductController::class,'ListProductSlider'])
 Route::get('/ProductDetailsById/{id}', [ProductController::class,'ProductDetailsById']);
 Route::get('/ListReviewByProduct/{product_id}', [ProductController::class,'ListReviewByProduct']);
 
- 
+
 
 
 //user Auth
