@@ -64,14 +64,12 @@
 
 
 
-
-
 <script>
 
-    async function Popular() {
-        let res = await axios.get("/ListProductByRemark/popular");
-        $("#PopularItem").empty();
 
+    async function Popular(){
+        let res=await axios.get("/ListProductByRemark/popular");
+        $("#PopularItem").empty();
         res.data['data'].forEach((item,i)=>{
             let EachItem=`<div class="col-lg-3 col-md-4 col-6">
                                 <div class="product">
@@ -100,15 +98,14 @@
                             </div>`
             $("#PopularItem").append(EachItem);
         })
+
     }
 
 
-
-    async function New() {
-        let res = await axios.get("/ListProductByRemark/new");
+    async function New (){
+        let res=await axios.get("/ListProductByRemark/new");
         $("#NewItem").empty();
-
-         res.data['data'].forEach((item,i)=>{
+        res.data['data'].forEach((item,i)=>{
             let EachItem=`<div class="col-lg-3 col-md-4 col-6">
                                 <div class="product">
                                     <div class="product_img">
@@ -117,12 +114,14 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
+
                                                 <li><a href="/details?id=${item['id']}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a  href="/details?id=${item['id']}">${item['title']}</a></h6>
+                                        <h6 class="product_title"><a href="/details?id=${item['id']}">${item['title']}</a></h6>
                                         <div class="product_price">
                                             <span class="price">$ ${item['price']}</span>
                                         </div>
@@ -139,12 +138,10 @@
     }
 
 
-
-    async function Top() {
-        let res = await axios.get("/ListProductByRemark/top");
+    async function Top(){
+        let res=await axios.get("/ListProductByRemark/top");
         $("#TopItem").empty();
-
-         res.data['data'].forEach((item,i)=>{
+        res.data['data'].forEach((item,i)=>{
             let EachItem=`<div class="col-lg-3 col-md-4 col-6">
                                 <div class="product">
                                     <div class="product_img">
@@ -153,12 +150,14 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
+
                                                 <li><a href="/details?id=${item['id']}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a  href="/details?id=${item['id']}">${item['title']}</a></h6>
+                                        <h6 class="product_title"><a href="/details?id=${item['id']}">${item['title']}</a></h6>
                                         <div class="product_price">
                                             <span class="price">$ ${item['price']}</span>
                                         </div>
@@ -171,16 +170,17 @@
                                 </div>
                             </div>`
             $("#TopItem").append(EachItem);
+
         })
     }
 
 
 
-    async function Special() {
-        let res = await axios.get("/ListProductByRemark/special");
+    async function Special(){
+        let res=await axios.get("/ListProductByRemark/special");
         $("#SpecialItem").empty();
 
-         res.data['data'].forEach((item,i)=>{
+        res.data['data'].forEach((item,i)=>{
             let EachItem=`<div class="col-lg-3 col-md-4 col-6">
                                 <div class="product">
                                     <div class="product_img">
@@ -189,12 +189,14 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
+
                                                 <li><a href="/details?id=${item['id']}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a  href="/details?id=${item['id']}">${item['title']}</a></h6>
+                                        <h6 class="product_title"><a href="/details?id=${item['id']}">${item['title']}</a></h6>
                                         <div class="product_price">
                                             <span class="price">$ ${item['price']}</span>
                                         </div>
@@ -207,16 +209,16 @@
                                 </div>
                             </div>`
             $("#SpecialItem").append(EachItem);
+
         })
     }
 
 
 
-    async function Trending() {
-        let res = await axios.get("/ListProductByRemark/trending");
+    async function Trending(){
+        let res=await axios.get("/ListProductByRemark/trending");
         $("#TrendingItem").empty();
-
-         res.data['data'].forEach((item,i)=>{
+        res.data['data'].forEach((item,i)=>{
             let EachItem=`<div class="col-lg-3 col-md-4 col-6">
                                 <div class="product">
                                     <div class="product_img">
@@ -225,12 +227,14 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
+
                                                 <li><a href="/details?id=${item['id']}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a  href="/details?id=${item['id']}">${item['title']}</a></h6>
+                                        <h6 class="product_title"><a href="/details?id=${item['id']}">${item['title']}</a></h6>
                                         <div class="product_price">
                                             <span class="price">$ ${item['price']}</span>
                                         </div>
@@ -243,6 +247,9 @@
                                 </div>
                             </div>`
             $("#TrendingItem").append(EachItem);
+
         })
     }
+
 </script>
+

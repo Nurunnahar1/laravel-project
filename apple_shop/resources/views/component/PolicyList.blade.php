@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-6">
                 <ol class="breadcrumb justify-content-md-end">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{url("/")}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">This Page</a></li>
                 </ol>
             </div>
@@ -26,18 +26,9 @@
     </div>
 </div>
 
-{{-- <script>
-    async function Policy() {
-        debugger;
-        let searchParams = new URLSearchParams(window.location.search);
-        let type = searchParams.get('type');
-        let res = await axios.get("/PolicyByType/"+type);
-        let des = res.data['des'];
-        $("#policy").html(des);
-    }
-</script> --}}
 
 <script>
+
     async function Policy(){
         let searchParams=new URLSearchParams(window.location.search);
         let type=searchParams.get('type');
@@ -71,5 +62,6 @@
         let res=await axios.get("/PolicyByType/"+type);
         let des=res.data['des']
         $("#policy").html(des)
-    }
+    }
+
 </script>

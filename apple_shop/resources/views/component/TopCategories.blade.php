@@ -18,13 +18,11 @@
 
 <script>
 
-
-
-async function TopCategory() {
-    let res = await axios.get("/CategoryList");
-    $("#TopCategoryItem").empty();
-    res.data['data'].forEach((item, i) => { // Added parentheses here
-        let EachItem = `<div class="p-2 col-2">
+    async function TopCategory(){
+        let res=await axios.get("/CategoryList");
+        $("#TopCategoryItem").empty()
+        res.data['data'].forEach((item,i)=>{
+            let EachItem= `<div class="p-2 col-2">
                 <div class="item">
                     <div class="categories_box">
                         <a href="/by-category?id=${item['id']}">
@@ -33,8 +31,9 @@ async function TopCategory() {
                         </a>
                     </div>
                 </div>
-            </div>`;
-        $("#TopCategoryItem").append(EachItem);
-    });
-}
+            </div>`
+            $("#TopCategoryItem").append(EachItem);
+        })
+    }
 </script>
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Product;
 use App\Models\ProductCart;
 use App\Models\ProductWish;
@@ -12,15 +13,23 @@ use App\Helper\ResponseHelper;
 use App\Models\ProductDetails;
 use App\Models\CustomerProfile;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
 
 
- public function Details()
- {
- return view('pages.details-page');
- }
+
+       public function CartListPage()
+       {
+       return view('pages.cart-list-page');
+       }
+
+
+    public function Details()
+    {
+    return view('pages.details-page');
+    }
 
 
 
@@ -101,57 +110,65 @@ class ProductController extends Controller
 
 
 
+  public function CreateCartList(Request $request): JsonResponse {
+  try {
+  $user_id = $request->header('id');
+  $product_id = 2;
+  $color = $request->input('color');
+  $size = $request->input('size');
+  $qty = $request->input('qty');
 
-   public function CreateCartList(Request $request) {
-   $user_id = $request->header('id');
-   $product_id = $request->input('product_id');
-   $color = $request->input('color');
-   $size = $request->input('size');
-   $qty = $request->input('qty');
-   $UnitPrice = 0;
+  $UnitPrice = 0;
 
-   // Retrieve product details based on product_id
-   $productDetails = Product::where('id', $product_id)->first();
+  $productDetails = Product::where('id', $product_id)->first();
 
-   if ($productDetails) {
-   // Check if 'discount' property exists in $productDetails
-   if (property_exists($productDetails, 'discount') && $productDetails->discount == 1) {
-   $UnitPrice = $productDetails->discount_price;
-   } else {
-   $UnitPrice = $productDetails->price;
-   }
-   $totalPrice = $qty * $UnitPrice;
+  if (!$productDetails) {
+  return ResponseHelper::Out('error', 'Product not found', 404);
+  }
 
-   $data = ProductCart::updateOrCreate(
-   ['user_id' => $user_id, 'product_id' => $product_id],
-   [
-   'user_id' => $user_id,
-   'product_id' => $product_id,
-   'color' => $color,
-   'size' => $size,
-   'qty' => $qty,
-   'price' => $totalPrice
-   ]
-   );
+  if ($productDetails->discount == 1) {
+  $UnitPrice = $productDetails->discount_price;
+  } else {
+  $UnitPrice = $productDetails->price;
+  }
 
-   return ResponseHelper::Out('success', $data, 200);
-   } else {
-   // Handle the case when the product with the given ID is not found
-   return ResponseHelper::Out('error', 'Product not found', 404);
-   }
-   }
+  $totalPrice = $qty * $UnitPrice;
+
+  $data = ProductCart::updateOrCreate(
+  ['user_id' => $user_id, 'product_id' => $product_id],
+  [
+  'user_id' => $user_id,
+  'product_id' => $product_id,
+  'color' => $color,
+  'size' => $size,
+  'qty' => $qty,
+  'price' => $totalPrice
+  ]
+  );
+
+  return ResponseHelper::Out('success', $data, 200);
+  } catch (Exception $e) {
+  return ResponseHelper::Out('fail', $e->getMessage(), 200);
+  }
+  }
 
 
-    public function CreateList(Request $request):JsonResponse{
-        $user_id=$request->header('id');
-        $data = ProductCart::where('user_id',$user_id)->with('product')->get();
-        return ResponseHelper::Out('success',$data,200);
+    public function CartList(Request $request):JsonResponse{
+    $user_id=$request->header('id');
+    $data=ProductCart::where('user_id',$user_id)->with('product')->get();
+    return ResponseHelper::Out('success',$data,200);
     }
 
     public function DeleteCartList(Request $request):JsonResponse{
-        $user_id=$request->header('id');
-        $data=ProductWish::where(['user_id', $user_id , 'product_id'=>$request->product_id])->delete();
-        return ResponseHelper::Out('success',$data, 200);
+    $user_id=$request->header('id');
+    $data=ProductCart::where('user_id','=',$user_id)->where('product_id','=',$request->product_id)->delete();
+    return ResponseHelper::Out('success',$data,200);
     }
+
+
+
+
+
+
 
 }

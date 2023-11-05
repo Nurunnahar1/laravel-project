@@ -4,8 +4,6 @@
     @include('component.ByBrandList')
     @include('component.TopBrands')
     @include('component.Footer')
- 
-
     <script>
         (async () => {
             await Category();
@@ -14,7 +12,6 @@
             await TopBrands();
         })()
     </script>
-
 @endsection
 
 
