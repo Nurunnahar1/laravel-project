@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -29,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'login' => ['required', 'string'],  //from login.blade.php (input name "login")
+            'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
         ];
     }
@@ -43,14 +41,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $user = User::where('email',$this->login)
-                ->orwhere('name',$this->login)
-                ->orwhere('phone',$this->login)
-                ->first();
-
-
-
-        if (!$user || !Hash::check($this->password,$user->password)) {
+        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -58,7 +49,6 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        Auth::login($user, $this->boolean('remember'));
         RateLimiter::clear($this->throttleKey());
     }
 
