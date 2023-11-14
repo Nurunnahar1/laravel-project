@@ -16,13 +16,10 @@
 </head>
 
 <body>
-    @include('frontend.components.hero')
+
+    @include('frontend.components.header')
     @include('frontend.components.why_shop_with_us')
-
     @include('frontend.components.arrival')
-
-
-
     @include('frontend.components.subscribe')
     @include('frontend.components.clients')
     @include('frontend.components.footer')
