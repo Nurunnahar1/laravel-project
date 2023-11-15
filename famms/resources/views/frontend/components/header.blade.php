@@ -1,4 +1,4 @@
-<div class="hero_area">
+
     <!-- header section strats -->
     <header class="header_section">
         <div class="container">
@@ -95,19 +95,15 @@
                                 </svg>
                             </a>
                         </li>
-                        <form class="form-inline">
-                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </form>
 
                         @if (Route::has('login'))
                             @auth
                                 <li class="nav-item">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="nav-link btn btn-primary mr-2">Logout</button>
+                                        <button type="submit" class="nav-link btn btn-outline-danger text-black mr-2">Logout</button>
                                     </form>
+
                                 </li>
                             @else
                                 <li class="nav-item">
@@ -125,5 +121,5 @@
         </div>
     </header>
     <!-- end header section -->
-    @include('frontend.components.slider')
-</div>
+
+

@@ -16,8 +16,10 @@
 </head>
 
 <body>
-
+    <div class="hero_area">
     @include('frontend.components.header')
+    @include('frontend.components.slider')
+    </div>
     @include('frontend.components.why_shop_with_us')
     @include('frontend.components.arrival')
     @include('frontend.components.subscribe')
