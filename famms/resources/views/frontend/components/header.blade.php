@@ -95,8 +95,9 @@
                                 </svg>
                             </a>
                         </li>
+                        <li>
 
-                        @if (Route::has('login'))
+                                @if (Route::has('login'))
                             @auth
                                 <li class="nav-item">
                                     <form method="POST" action="{{ route('logout') }}">
@@ -114,6 +115,10 @@
                                 </li>
                             @endauth
                         @endif
+
+                        </li>
+
+
 
                     </ul>
                 </div>

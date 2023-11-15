@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/Category-list', [CategoryController::class,'CategoryList'])->name('category.list');
+Route::get('/Category-create', [CategoryController::class,'CategoryCreate'])->name('category.create');

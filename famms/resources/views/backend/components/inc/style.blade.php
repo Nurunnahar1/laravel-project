@@ -14,3 +14,6 @@
  <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
  <!-- End layout styles -->
  <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
+ {{-- page specific style stsrt--}}
+ @stack('admin_style')
+ {{-- page specific style end--}}

@@ -18,3 +18,6 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('backend/assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page -->
+ {{-- page specific style stsrt--}}
+ @stack('admin_script')
+ {{-- page specific style end--}}
