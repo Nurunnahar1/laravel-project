@@ -21,5 +21,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 });
 
 
-Route::get('/Category-list', [CategoryController::class,'CategoryList'])->name('category.list');
-Route::get('/Category-create', [CategoryController::class,'CategoryCreate'])->name('category.create');
+Route::get('/category-list', [CategoryController::class,'CategoryList'])->name('category.list');
+Route::get('/category-create', [CategoryController::class,'CategoryCreate'])->name('category.create');
+Route::post('/category-store', [CategoryController::class,'CategoryStore'])->name('category.store');

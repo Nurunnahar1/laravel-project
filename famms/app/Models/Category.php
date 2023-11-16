@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory ,SoftDeletes;
-    protected $guarted=[];
+    protected $fillable=['title','category_image','slug'];
 }
