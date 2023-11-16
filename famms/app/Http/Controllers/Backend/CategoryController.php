@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
@@ -54,6 +55,28 @@ class CategoryController extends Controller
                 'category_image' => $new_photo_name,
             ]);
         }
+    }
+
+
+function CategoryEdit($slug){
+    $category = Category::whereSlug($slug)->first();
+    return view("backend.pages.category.edit", compact("category"));
+}
+
+
+    function CategoryUpdate(UpdateCategoryRequest $request, $slug){
+        $category = Category::whereSlug($slug)->first();
+        $category->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->input('title')),
+            'is_active' => $request->filled('is_active')
+
+        ]);
+
+        $this->image_upload($request, $category->id);
+        Session::flash('msg','Category updated successfully');
+        return redirect()->route('category.list');
+
     }
 
 

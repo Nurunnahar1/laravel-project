@@ -51,8 +51,8 @@
                                     <td>{{ $category->title }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td class="flex">
-
-                                        <a href="" class="btn btn-primary mx-2">Edit</a>
+                                        
+                                        <a href="{{ route('category.edit', ['slug' => $category->slug]) }}" class="btn btn-primary mx-2">Edit</a>
                                         <a href="" class="btn btn-danger"
                                             onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
 
