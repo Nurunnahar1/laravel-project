@@ -26,4 +26,5 @@ Route::get('/category-create', [CategoryController::class,'CategoryCreate'])->na
 Route::post('/category-store', [CategoryController::class,'CategoryStore'])->name('category.store');
 Route::get('/category-edit/{slug}', [CategoryController::class,'CategoryEdit'])->name('category.edit');
 Route::post('/category-update/{slug}', [CategoryController::class,'CategoryUpdate'])->name('category.update');
- 
+Route::get('/category-destroy/{slug}', [CategoryController::class,'CategoryDestroy'])->name('category.destroy');
+

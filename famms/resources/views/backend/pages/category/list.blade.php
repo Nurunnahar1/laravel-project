@@ -12,12 +12,17 @@
     </style>
 @endpush
 @section('content')
-    @if (Session::has('msg'))
-        <p class="alert alert-success ">{{ Session::get('msg') }}</p>
-     @endif
+@if (Session::has('msg'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ Session::get('msg') }}
+    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">x</button> --}}
+
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+</div>
+@endif
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+
+        <div class="col-12">
             <h1>Category List Table</h1>
             <div class="col-12">
                 <div class="d-flex justify-content-end">
@@ -51,10 +56,16 @@
                                     <td>{{ $category->title }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td class="flex">
-                                        
-                                        <a href="{{ route('category.edit', ['slug' => $category->slug]) }}" class="btn btn-primary mx-2">Edit</a>
-                                        <a href="" class="btn btn-danger"
-                                            onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
+
+                                        <a href="{{ route('category.edit', ['slug' => $category->slug]) }}" class="btn btn-primary py-2 mx-2">Edit</a>
+                                        <a href="{{ route('category.destroy', ['slug' => $category->slug]) }}" class="btn btn-danger py-2 mx-2" onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
+                                        {{-- <form action="{{ route('category.destroy', $category->slug) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="dropdown-item show_confirm" type="submit"> <i
+                                                    class="fas fa-trash"></i>Delete</button>
+                                        </form> --}}
 
                                     </td>
                                 </tr>
