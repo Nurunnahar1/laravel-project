@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $guarded = ['id'];
 
     function category():BelongsTo{
         return $this->belongsTo(Category::class);

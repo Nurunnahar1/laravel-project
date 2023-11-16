@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,14 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/category-edit/{slug}','CategoryEdit')->name('category.edit');
     Route::post('/category-update/{slug}','CategoryUpdate')->name('category.update');
     Route::get('/category-destroy/{slug}','CategoryDestroy')->name('category.destroy');
+
+});
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product-list','ProductList')->name('product.list');
+    Route::get('/product-create', 'ProductCreate')->name('product.create');
+    Route::post('/product-store', 'ProductStore')->name('product.store');
+    Route::get('/product-edit/{slug}','ProductEdit')->name('product.edit');
+    Route::post('/product-update/{slug}','ProductUpdate')->name('product.update');
+    Route::get('/product-destroy/{slug}','ProductDestroy')->name('product.destroy');
 
 });
