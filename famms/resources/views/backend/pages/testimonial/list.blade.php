@@ -26,7 +26,7 @@ Testimonial
         <h1>Testimonial List Table</h1>
         <div class="col-12">
             <div class="d-flex justify-content-end">
-                <a href="{{ route('product.create') }}" class="btn btn-primary">
+                <a href="{{ route('testimonial.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i>
                     Add New testimonial
                 </a>
