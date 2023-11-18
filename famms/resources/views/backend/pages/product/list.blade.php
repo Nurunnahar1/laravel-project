@@ -4,7 +4,7 @@
 @endsection
 
 @push('asmin_style')
-    <link rel="stylesheet" href="{{ asset('https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <style>
         .dataTables_length {
             padding: 20px 0;
@@ -14,26 +14,14 @@
 
 
 @section('content')
-    @extends('backend.layout.app')
-@section('title')
-    Category
-@endsection
 
-@push('asmin_style')
-    <link rel="stylesheet" href="{{ asset('https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css') }}">
-    <style>
-        .dataTables_length {
-            padding: 20px 0;
-        }
-    </style>
-@endpush
-@section('content')
     @if (Session::has('msg'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ Session::get('msg') }}
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ Session::get('msg') }}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+    </div>
     @endif
+
     <div class="row">
         <h1>Product List Table</h1>
         <div class="col-12">
@@ -63,11 +51,11 @@
                     <tbody>
                         @foreach ($products as $key=>$product)
                             <tr>
-                                <th scope="row">{{ $key+1 }}</th>
+                                <td scope="row">{{ $key+1 }}</td>
                                 {{-- <td><img src="{{ $product->product_image }}" alt=""
                                     class="img-fluid rounded h-50 w-50 "></td> --}}
-                                <th><img src="{{ asset('uploads/product') }}/{{ $product->product_image }}" alt=""
-                                        class="img-fluid rounded  h-100  w-50 "></th>
+                                <td><img src="{{ asset('uploads/product') }}/{{ $product->product_image }}" alt=""
+                                        class="img-fluid rounded  h-100  w-50 "></td>
 
                                 <td>{{ $product->updated_at->format('d M Y') }}</td>
                                 <td>{{ $product->category->title }}</td>
@@ -76,7 +64,7 @@
                                 <td><span class="badge bg-success ">{{ $product->product_stock }}</span>/ <span
                                         class="badge bg-danger ">{{ $product->alert_quantity }}</span></td>
                                 <td>{{ $product->product_rating }}</td>
-                                <td>
+
                                     <td class="flex">
 
                                         <a href="{{ route('product.edit', ['slug' => $product->slug]) }}" class="btn btn-primary py-2 mx-2">Edit</a>
@@ -84,7 +72,7 @@
 
 
                                     </td>
-                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>

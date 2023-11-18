@@ -59,7 +59,7 @@
 
                                         <a href="{{ route('category.edit', ['slug' => $category->slug]) }}" class="btn btn-primary py-2 mx-2">Edit</a>
                                         <a href="{{ route('category.destroy', ['slug' => $category->slug]) }}" class="btn btn-danger py-2 mx-2" onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
-                                        
+
 
                                     </td>
                                 </tr>
@@ -84,28 +84,7 @@
             $('#dataTable').DataTable({
                 pagingType: 'first_last_numbers',
             });
-            // $('.show_confirm').click(function(event) { //this line
-            //     let form = $(this).closest('form'); //this line
-            //     event.preventDefault(); //this line
-            //     Swal.fire({
-            //         title: 'Are you sure?',
-            //         text: "You won't be able to revert this!",
-            //         icon: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonColor: '#3085d6',
-            //         cancelButtonColor: '#d33',
-            //         confirmButtonText: 'Yes, delete it!'
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             form.submit(); //this line
-            //             Swal.fire(
-            //                 'Deleted!',
-            //                 'Your file has been deleted.',
-            //                 'success'
-            //             )
-            //         }
-            //     })
-            // });
+        
         });
     </script>
 @endpush
