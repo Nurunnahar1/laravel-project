@@ -51,32 +51,6 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
-    // function image_upload($request, $item_id){
-    //     $product = Product::findOrFail($item_id);
-
-    //     if ($request->hasFile('product_image')) {
-    //         // dd($request->all());
-    //         if ($product->product_image != 'default_product.jpg') {
-    //             $photo_location = 'public/uploads/product/';
-    //             $old_photo_location = $photo_location . $product->product_image;
-
-    //             // Check if the file exists before attempting to unlink
-    //             if (file_exists(base_path($old_photo_location))) {
-    //                 unlink(base_path($old_photo_location));
-    //             }
-    //         }
-
-    //         $photo_location = 'public/uploads/product/';
-    //         $uploaded_photo = $request->file('product_image');
-    //         $new_photo_name = $product->id . '.' . $uploaded_photo->getClientOriginalExtension();
-    //         $new_photo_location = $photo_location . $new_photo_name;
-    //         Image::make($uploaded_photo)->resize(600, 622)->save(base_path($new_photo_location), 40);
-
-    //         $check = $product->update([
-    //             'product_image' => $new_photo_name,
-    //         ]);
-    //     }
-    // }
     function image_upload($request, $item_id){
         $product = Product::findOrFail($item_id);
 
@@ -161,4 +135,27 @@ class ProductController extends Controller
         Session::flash('msg','Product updated successfully');
         return redirect()->route('product.list');
     }
+
+    function ProductDestroy($slug){
+        $product = Product::whereSlug($slug)->first();
+        if(!$product){
+            Session::flash('msg','Product not found');
+            return redirect()->route('product.list');
+        }
+        elseif($product->product_image) {
+            $photo_location = 'uploads/product/'.$product->product_image;
+
+            if(file_exists($photo_location)) {
+                unlink($photo_location);
+            }else{
+                Session::flash('msg','Image not found');
+            }
+        }
+
+        $product->delete();
+        Session::flash('msg','Product Deleted Successfully');
+        return redirect()->route('product.list');
+    }
+
+
 }
