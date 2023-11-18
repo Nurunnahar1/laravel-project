@@ -53,21 +53,26 @@ class ProductController extends Controller
 
 
     function image_upload($request, $item_id){
-        $product = Product::findorFail($item_id);
+        $product = Product::findOrFail($item_id);
 
-        if($request->hasFile('product_image')){
+        if ($request->hasFile('product_image')) {
             // dd($request->all());
-            if($product->product_image !='dafault_product.jpg'){
+            if ($product->product_image != 'default_product.jpg') {
                 $photo_location = 'public/uploads/product/';
-                $old_photo_location = $photo_location.$product->product_image;
-                unlink(base_path($old_photo_location));
+                $old_photo_location = $photo_location . $product->product_image;
 
+                // Check if the file exists before attempting to unlink
+                if (file_exists(base_path($old_photo_location))) {
+                    unlink(base_path($old_photo_location));
+                }
             }
+
             $photo_location = 'public/uploads/product/';
             $uploaded_photo = $request->file('product_image');
-            $new_photo_name = $product->id.'.'.$uploaded_photo->getClientOriginalExtension();
-            $new_photo_location = $photo_location.$new_photo_name;
-            Image::make($uploaded_photo)->resize(600,622)->save(base_path($new_photo_location),40);
+            $new_photo_name = $product->id . '.' . $uploaded_photo->getClientOriginalExtension();
+            $new_photo_location = $photo_location . $new_photo_name;
+            Image::make($uploaded_photo)->resize(600, 622)->save(base_path($new_photo_location), 40);
+
             $check = $product->update([
                 'product_image' => $new_photo_name,
             ]);
