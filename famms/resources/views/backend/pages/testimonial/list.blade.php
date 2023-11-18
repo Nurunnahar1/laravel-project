@@ -1,6 +1,6 @@
 @extends('backend.layout.app')
 @section('title')
-    Product
+Testimonial
 @endsection
 
 @push('asmin_style')
@@ -23,12 +23,12 @@
     @endif
 
     <div class="row">
-        <h1>Product List Table</h1>
+        <h1>Testimonial List Table</h1>
         <div class="col-12">
             <div class="d-flex justify-content-end">
                 <a href="{{ route('product.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i>
-                    Add New product
+                    Add New testimonial
                 </a>
             </div>
         </div>
@@ -38,36 +38,31 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Image</th>
                             <th scope="col">Last Modified</th>
-                            <th scope="col">Category Name</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Stock/Alert</th>
-                            <th scope="col">Rating</th>
+                            <th scope="col">Client Image</th>
+                            <th scope="col">Client Name</th>
+                            <th scope="col">Client Designation</th>
                             <th scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $key=>$product)
+                        @foreach ($testimonials as $key=>$testimonial)
                             <tr>
                                 <td scope="row">{{ $key+1 }}</td>
-                              
-                                <td><img src="{{ asset('uploads/product') }}/{{ $product->product_image }}" alt=""
-                                        class="img-fluid rounded  h-100  w-50 "></td>
+                                <td>{{ $testimonial->updated_at->format('d M Y') }}</td>
+                                <td><img src="{{ asset('uploads/testimonial') }}/{{ $testimonial->client_image}}" alt=""
+                                    class="img-fluid rounded  h-100  w-50 "></td>
+                                <td>{{ $testimonial->client_name }}</td>
 
-                                <td>{{ $product->updated_at->format('d M Y') }}</td>
-                                <td>{{ $product->category->title }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->product_price }}</td>
-                                <td><span class="badge bg-success ">{{ $product->product_stock }}</span>/ <span
-                                        class="badge bg-danger ">{{ $product->alert_quantity }}</span></td>
-                                <td>{{ $product->product_rating }}</td>
 
+                                <td>{{ $testimonial->client_designation }}</td>
+
+
+{{-- <td></td> --}}
                                     <td class="flex">
 
-                                        <a href="{{ route('product.edit', ['slug' => $product->slug]) }}" class="btn btn-primary py-2 mx-2">Edit</a>
-                                        <a href="{{ route('product.destroy', ['slug' => $product->slug]) }}" class="btn btn-danger py-2 mx-2" onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
+                                        <a href="{{ route('testimonial.edit', ['slug' => $testimonial->client_name_slug]) }}" class="btn btn-primary py-2 mx-2">Edit</a>
+                                        <a href="{{ route('testimonial.destroy', ['slug' => $testimonial->client_name_slug]) }}" class="btn btn-danger py-2 mx-2" onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
 
 
                                     </td>

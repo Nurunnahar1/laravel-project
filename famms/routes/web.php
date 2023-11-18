@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,4 +40,14 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('/product-update/{slug}','ProductUpdate')->name('product.update');
     Route::get('/product-destroy/{slug}','ProductDestroy')->name('product.destroy');
 
+});
+Route::controller(TestimonialController::class)->group(function () {
+    Route::get('/testimonial-list','TestimonialList')->name('testimonial.list');
+    Route::get('/testimonial-create', 'TestimonialCreate')->name('testimonial.create');
+    Route::post('/testimonial-store', 'TestimonialStore')->name('testimonial.store');
+
+
+    Route::get('/testimonial-edit/{slug}','TestimonialEdit')->name('testimonial.edit');
+    Route::post('/testimonial-update/{slug}','TestimonialUpdate')->name('testimonial.update');
+    Route::get('/testimonial-destroy/{slug}','TestimonialDestroy')->name('testimonial.destroy');
 });
