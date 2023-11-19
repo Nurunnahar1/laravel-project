@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\HomeController;
@@ -50,4 +51,12 @@ Route::controller(TestimonialController::class)->group(function () {
     Route::get('/testimonial-edit/{slug}','TestimonialEdit')->name('testimonial.edit');
     Route::post('/testimonial-update/{slug}','TestimonialUpdate')->name('testimonial.update');
     Route::get('/testimonial-destroy/{slug}','TestimonialDestroy')->name('testimonial.destroy');
+});
+Route::controller(CouponController::class)->group(function () {
+    Route::get('/coupon-list','CouponList')->name('coupon.list');
+    Route::get('/coupon-create', 'CouponCreate')->name('coupon.create');
+    Route::post('/coupon-store', 'CouponStore')->name('coupon.store');
+    Route::get('/coupon-edit/{slug}','CouponEdit')->name('coupon.edit');
+    Route::post('/coupon-update/{slug}','CouponUpdate')->name('coupon.update');
+    Route::get('/coupon-destroy/{slug}','CouponDestroy')->name('coupon.destroy');
 });
