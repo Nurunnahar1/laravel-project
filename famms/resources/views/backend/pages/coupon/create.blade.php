@@ -1,5 +1,5 @@
 @extends('backend.layout.app')
-@section('title') Testimonial Create @endsection
+@section('title') Coupon Create @endsection
 
 @push('admin_style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -7,11 +7,11 @@
 
 @section('content')
     <div class="row">
-        <h1>Testimonial Create Form</h1>
+        <h1>Coupon Create Form</h1>
 
         <div class="col-12">
             <div class="d-flex justify-content-start">
-                <a href="{{ route('coupon.list') }}" class="btn btn-primary"><i class="fas fa-backword"></i>Back to products</a>
+                <a href="{{ route('coupon.list') }}" class="btn btn-primary"><i class="fas fa-backword"></i>Back to Coupon</a>
             </div>
         </div>
 
@@ -20,10 +20,6 @@
                 <div class="card-body">
                     <form action="{{ route('coupon.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
-
-
-
 
                         <div class="col-6 mb-3">
                             <label for="coupon_name " class="form-label">Coupon name </label>
@@ -37,7 +33,7 @@
 
                         <div class="col-6 mb-3">
                             <label for="discount_amount " class="form-label">Discount amount</label>
-                            <input type="number" name="discount_amount " min="0" class="form-control @error('discount_amount ') is-invalid   @enderror" id="discount_amount ">
+                            <input type="number" name="discount_amount" min="0" class="form-control @error('discount_amount ') is-invalid   @enderror" id="discount_amount ">
                             @error('discount_amount ')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -56,7 +52,7 @@
                         </div>
                         <div class="col-6 mb-3">
                             <label for="validity_till" class="form-label">Validity till</label>
-                            <input type="text" name="validity_till" class="form-control @error('validity_till') is-invalid   @enderror" id="validity_till" placeholder="enter a unique product code">
+                            <input type="date" name="validity_till" class="form-control @error('validity_till') is-invalid   @enderror" id="validity_till" placeholder="enter a unique product code">
                             @error('validity_till')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
