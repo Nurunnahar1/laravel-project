@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\UpdateCouponRequest;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,10 +37,24 @@ class CouponController extends Controller
         return view('backend.pages.coupon.edit',compact('coupon'));
     }
 
-function CouponDestroy($id){
-    $coupon = Coupon::find($id)->delete();
-    Session::flash('msg','Coupon deleted successfully');
-    return redirect()->route('coupon.list');
+    function CouponUpdate(UpdateCouponRequest $request ,$id){
+        $coupon = Coupon::find($id);
+        $coupon->update([
+            'coupon_name'=>$request->coupon_name,
+            'discount_amount'=>$request->discount_amount,
+            'minimum_purchese_amount'=>$request->minimum_purchese_amount,
+            'validity_till'=>$request->validity_till,
+            'is_active'=>$request->filled('is_active'),
+        ]);
 
-}
+        Session::flash('msg','Coupon update successfully');
+        return redirect()->route('coupon.list');
+    }
+
+    function CouponDestroy($id){
+        $coupon = Coupon::find($id)->delete();
+        Session::flash('msg','Coupon deleted successfully');
+        return redirect()->route('coupon.list');
+
+    }
 }
