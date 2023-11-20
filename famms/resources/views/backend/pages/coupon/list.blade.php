@@ -55,35 +55,18 @@ Coupon
                                 <td>{{ $coupon->discount_amount }}</td>
                                 <td>{{ $coupon->minimum_purchese_amount }}</td>
                                 <td>{{ $coupon->validity_till }}</td>
-
-
-
-
-
-
-                                    <td class="flex">
-
-                                        <a href=" " class="btn btn-primary py-2 mx-2">Edit</a>
-                                        <a href=" " class="btn btn-danger py-2 mx-2" onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
-
-
-                                    </td>
-
+                                <td class="flex">
+                                   <a href="{{ route('coupon.edit', ['id'=>$coupon->id]) }} " class="btn btn-primary py-2 mx-2">Edit</a>
+                                    <a href="{{ route('coupon.destroy', ['id'=>$coupon->id]) }}  " class="btn btn-danger py-2 mx-2" onclick="return confirm('Are you sure to delete it?? ')">Delete</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 @endsection
-
-
-
-
-
-
 
 @push('admin_script')
     <script src="{{ asset('https://code.jquery.com/jquery-3.7.0.js') }}"></script>

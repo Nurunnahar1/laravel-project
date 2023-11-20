@@ -30,4 +30,16 @@ class CouponController extends Controller
         Session::flash('msg','Coupon created successfully');
         return redirect()->route('coupon.list');
     }
+
+    function CouponEdit($id){
+        $coupon = Coupon::find($id);
+        return view('backend.pages.coupon.edit',compact('coupon'));
+    }
+
+function CouponDestroy($id){
+    $coupon = Coupon::find($id)->delete();
+    Session::flash('msg','Coupon deleted successfully');
+    return redirect()->route('coupon.list');
+
+}
 }

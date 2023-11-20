@@ -56,7 +56,7 @@ Route::controller(CouponController::class)->group(function () {
     Route::get('/coupon-list','CouponList')->name('coupon.list');
     Route::get('/coupon-create', 'CouponCreate')->name('coupon.create');
     Route::post('/coupon-store', 'CouponStore')->name('coupon.store');
-    Route::get('/coupon-edit/{slug}','CouponEdit')->name('coupon.edit');
-    Route::post('/coupon-update/{slug}','CouponUpdate')->name('coupon.update');
-    Route::get('/coupon-destroy/{slug}','CouponDestroy')->name('coupon.destroy');
+    Route::get('coupon/edit/{id}','CouponEdit')->name('coupon.edit');
+    Route::post('/coupon-update/{id}','CouponUpdate')->name('coupon.update');
+    Route::get('/coupon-destroy/{id}','CouponDestroy')->name('coupon.destroy');
 });
