@@ -25,7 +25,7 @@ class AdminMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Admin Mail',
+            subject: 'Reset Password',
         );
     }
 

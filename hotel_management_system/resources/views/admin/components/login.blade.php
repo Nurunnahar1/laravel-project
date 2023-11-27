@@ -32,14 +32,14 @@
                                     <div><p></p></div>
                                 @endif --}}
 
-                                @if (Session::has('error'))
+                                @if (Session::has('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ Session::get('error') }}
-
-
+                                        {{ Session::get('success') }}
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
                                     </div>
                                 @endif
+
+
                                 <div class="card-body card-body-auth">
                                     <form method="POST" action="{{ route('admin.login') }}">
                                         @csrf

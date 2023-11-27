@@ -12,11 +12,5 @@ class HomeController extends Controller
     function Dashboard(){
         return view('admin.components.dashboard');
     }
-    function loginPage(){
 
-        return view('admin.components.login');
-    }
-    function forgetPasswordPage(){
-        return view('admin.components.forget_password');
-    }
 }

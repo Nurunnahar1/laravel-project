@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admin;
+use App\Mail\AdminMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -25,9 +28,38 @@ class LoginController extends Controller
    }
  }
 
+ function loginPage(){
 
- function logout(){
+    return view('admin.components.login');
+}
+
+
+function logout(){
     Auth::guard('admin')->logout();
     return redirect()->route('admin.login');
+}
+
+function forgetPasswordPage(){
+    return view('admin.components.forget_password');
+}
+ function forgetPassword(Request $request){
+     $request->validate([
+        'email' => 'required|email',
+     ]);
+     $admin_data = Admin::where('email', $request->email)->first();
+     if(!$admin_data){
+        return redirect()->back()->with('error', 'Email address not found !!');
+     }
+     $token = Hash('sha256', time());
+     $admin_data->token = $token;
+     $admin_data->update();
+
+     $reset_link = url('admin/reset-password/'.$token.'/'.$request->email);
+     $message = 'Please click on this link: <br><a href="'.$reset_link.'">Click here</a>';
+
+
+     Mail::to($request->email)->send(new AdminMail($message));
+     return redirect()->route('admin.login')->with('success', 'Please check your email and follow the steps');
+
  }
 }
