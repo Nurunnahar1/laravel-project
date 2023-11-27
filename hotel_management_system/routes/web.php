@@ -10,9 +10,14 @@ Route::get('/', function () {
 });
 Route::prefix('admin/')->group(function(){
     Route::get('login',[HomeController::class, 'loginPage'])->name('admin.loginpage');
-    Route::post('login',[HomeController::class, 'login'])->name('admin.login');
+    Route::post('login',[LoginController::class, 'login'])->name('admin.login');
+    Route::get('logout',[LoginController::class, 'logout'])->name('admin.logout');
+
+
     Route::get('forgrt-password',[HomeController::class, 'forgetPasswordPage'])->name('forget.password.page');
-    Route::post('forgrt-password',[HomeController::class, 'forgetPassword'])->name('forget.password');
+    Route::post('forgrt-password',[LoginController::class, 'forgetPassword'])->name('forget.password');
+
+    Route::get('dashboard',[HomeController::class, 'Dashboard'])->name('admin.dashboard')->middleware('admin');
 
 
 

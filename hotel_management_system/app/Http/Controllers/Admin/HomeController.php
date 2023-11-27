@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
+
+    function Dashboard(){
+        return view('admin.components.dashboard');
+    }
     function loginPage(){
-        $pass = Hash::make('1234');
-        dd($pass);
+
         return view('admin.components.login');
     }
     function forgetPasswordPage(){
