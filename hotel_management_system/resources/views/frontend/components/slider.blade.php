@@ -1,3 +1,4 @@
+
 <div class="slider">
     <div class="slide-carousel owl-carousel">
         <div class="item" style="background-image:url(uploads/slide1.jpg);">

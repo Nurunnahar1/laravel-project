@@ -5,9 +5,9 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 
 
-
+//============ frontend routes===========
 Route::get('/', function () {
-    return view('backend.layout.app');
+    return view('frontend.layout.app');
 });
 
 Route::prefix('admin/')->group(function(){
