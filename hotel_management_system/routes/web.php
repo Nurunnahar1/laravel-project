@@ -30,10 +30,11 @@ Route::prefix('admin/')->group(function(){
         Route::get('profile', 'profilePage')->name('admin.profilePage');
         Route::post('profile', 'adminProfile')->name('admin.profile');
     });
+
     Route::controller(adminSlideController::class)->group(function () {
 
         Route::get('slide', 'index')->name('slide.page');
-        // Route::post('profile', 'adminProfile')->name('admin.profile');
+        Route::get('slide-create', 'create')->name('slide.createPage');
     });
 
 });
