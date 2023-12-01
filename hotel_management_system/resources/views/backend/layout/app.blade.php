@@ -34,6 +34,8 @@
 
     @include('backend.components.footer_script')
 
+    @include('backend.components.toastr_msg')
+
 </body>
 
 </html>

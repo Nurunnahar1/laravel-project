@@ -1,2 +1,2 @@
-<script src="dist/js/scripts.js"></script>
-<script src="dist/js/custom.js"></script>
+<script src="{{ asset('backend/dist/js/scripts.js') }}"></script>
+<script src="{{ asset('backend/dist/js/custom.js') }}"></script>
