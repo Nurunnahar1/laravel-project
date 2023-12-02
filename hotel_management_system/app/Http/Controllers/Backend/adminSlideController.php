@@ -32,18 +32,48 @@ class adminSlideController extends Controller
         $slide_data->photo = $final_name;
 
 // Change 10 to your desired word limit
-        // $words = explode(' ', $request->heading);
-        // $limitedWords = implode(' ', array_slice($words, 0, 10));
-        // $slide_data->heading = $limitedWords;
+        $words = explode(' ', $request->heading);
+        $limitedWords = implode(' ', array_slice($words, 0, 10));
+        $slide_data->heading = $limitedWords;
 // Change 10 to your desired word limit
 
 
-        $slide_data->heading = Str::limit($request->heading, 30); // Change 10 to my desired letter limit
+        // $slide_data->heading = Str::limit($request->heading, 30); // Change 10 to my desired letter limit
         $slide_data->text = $request->text;
         $slide_data->button_text = $request->button_text;
         $slide_data->button_url = $request->button_url;
         $slide_data->save();
 
-        return redirect()->back()->with('success', 'Slide data create successfully');
+        return redirect()->route('slide.page')->with('success', 'Slide data create successfully');
     }
+
+    function editPage($id){
+        $slide_data = Slide::where('id', $id)->first();
+        return view('backend.pages.slide.edit',compact('slide_data'));
+    }
+
+    function update(Request $request,$id){
+        // echo $id;
+        $slide_data = Slide::where('id', $id)->first();
+
+        if($request->hasFile('photo')){
+            $request->validate([
+                'photo' => 'image|mimes:jpg,jpeg,png,gif',
+            ]);
+            unlink(public_path('uploads/slide/'.$slide_data->photo));
+            $ext = $request->file('photo')->extension();
+            $final_name = time().'.'.$ext;
+            $request->file('photo')->move(public_path('uploads/slide/'),$final_name);
+            $slide_data->photo = $final_name;
+        }
+
+        $slide_data->heading = $request->heading;
+        $slide_data->text = $request->text;
+        $slide_data->button_text = $request->button_text;
+        $slide_data->button_url = $request->button_url;
+        $slide_data->update();
+
+        return redirect()->route('slide.page')->with('success', 'Slide is update successfully.');
+    }
+
 }

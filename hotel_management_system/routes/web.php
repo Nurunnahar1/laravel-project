@@ -36,6 +36,9 @@ Route::prefix('admin/')->group(function(){
         Route::get('slide', 'index')->name('slide.page');
         Route::get('slide-create', 'create')->name('slide.createPage');
         Route::post('slide-store', 'store')->name('slide.store');
+        Route::get('slide-edit/{id}', 'editPage')->name('slide.editPage');
+        Route::post('slide-update/{id}', 'update')->name('slide.update');
+        Route::get('slide-destroy', 'destroy')->name('slide.destroy');
     });
 
 });
