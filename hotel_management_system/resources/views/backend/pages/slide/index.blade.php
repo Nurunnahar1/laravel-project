@@ -43,8 +43,8 @@
 
                                             <td>{{ $row->heading }}</td>
                                             <td>{{ $row->text }}</td>
-                                            <td>{{ $row->butten_text }}</td>
-                                            <td>{{ $row->butten_url }}</td>
+                                            <td>{{ $row->button_text }}</td>
+                                            <td>{{ $row->button_url }}</td>
                                             <td class="flex">
                                                 <a href="{{ route('slide.editPage',$row->id) }}" class="btn btn-primary"  >Edit</a>
                                                 <a href="{{ route('slide.destroy',$row->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');">Delete</a>

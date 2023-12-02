@@ -27,13 +27,13 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Heading </label>
+                                    <textarea type="text" name="heading" id="" class="form-control"  cols="30" rows="10"> </textarea>
 
-                                    <input type="text" class="form-control" name="heading">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Text </label>
+                                    <textarea type="text" name="text" id="" class="form-control h_100"  cols="30" rows="10"> </textarea>
 
-                                    <input type="text" class="form-control" name="text" >
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Button Text </label>

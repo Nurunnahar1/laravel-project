@@ -31,13 +31,13 @@
 
                                 <div class="mb-4">
                                     <label class="form-label">Heading </label>
+                                    <textarea type="text" name="heading" id="" class="form-control"  cols="30" rows="10">{{ $slide_data->heading }}</textarea>
 
-                                    <input type="text" class="form-control" name="heading" value="{{ $slide_data->heading }}">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Text </label>
+                                    <textarea type="text" name="text" id="" class="form-control h_100"  cols="30" rows="10">{{ $slide_data->text }} </textarea>
 
-                                    <input type="text" class="form-control" name="text" value="{{ $slide_data->text }}">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Button Text </label>

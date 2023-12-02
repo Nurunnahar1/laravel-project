@@ -24,8 +24,8 @@
         <!-- Menu For Desktop Device -->
        @include('frontend.components.main_nav')
     </div>
-    {{-- @include('frontend.components.topbar') --}}
-    @include('backend.components.sidebar')
+
+    @include('frontend.components.slider')
     @include('frontend.components.search')
     @include('frontend.components.home_feacher')
     @include('frontend.components.home_room')

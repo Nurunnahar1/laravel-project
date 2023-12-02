@@ -1,16 +1,20 @@
 <?php
 
 use App\Http\Controllers\Backend\adminSlideController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 
 
 //============ frontend routes===========
-Route::get('/', function () {
-    return view('frontend.layout.app');
-});
+// Route::get('/', function () {
+//     return view('frontend.layout.app');
+// });
+Route::get('/',[HomeController::class,'index'])->name('home');
 
+
+//=============Backend routes========
 Route::prefix('admin/')->group(function(){
     Route::controller(AdminController::class)->group(function () {
         Route::get('login', 'loginPage')->name('loginPage');
@@ -38,7 +42,7 @@ Route::prefix('admin/')->group(function(){
         Route::post('slide-store', 'store')->name('slide.store');
         Route::get('slide-edit/{id}', 'editPage')->name('slide.editPage');
         Route::post('slide-update/{id}', 'update')->name('slide.update');
-        Route::get('slide-destroy', 'destroy')->name('slide.destroy');
+        Route::get('slide-destroy/{id}', 'destroy')->name('slide.destroy');
     });
 
 });

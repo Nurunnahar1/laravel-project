@@ -31,14 +31,7 @@ class adminSlideController extends Controller
         $slide_data = new Slide();
         $slide_data->photo = $final_name;
 
-// Change 10 to your desired word limit
-        $words = explode(' ', $request->heading);
-        $limitedWords = implode(' ', array_slice($words, 0, 10));
-        $slide_data->heading = $limitedWords;
-// Change 10 to your desired word limit
-
-
-        // $slide_data->heading = Str::limit($request->heading, 30); // Change 10 to my desired letter limit
+        $slide_data->heading = $request->heading;
         $slide_data->text = $request->text;
         $slide_data->button_text = $request->button_text;
         $slide_data->button_url = $request->button_url;
@@ -74,6 +67,13 @@ class adminSlideController extends Controller
         $slide_data->update();
 
         return redirect()->route('slide.page')->with('success', 'Slide is update successfully.');
+    }
+
+    function destroy($id){
+        $single_data = Slide::where('id', $id)->first();
+        unlink(public_path('uploads/slide/'.$single_data->photo));
+        $single_data->delete();
+        return redirect()->route('slide.page')->with('success', 'Slide is Deleted successfully.');
     }
 
 }
