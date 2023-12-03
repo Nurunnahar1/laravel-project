@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\adminSlideController;
+use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
@@ -43,6 +44,15 @@ Route::prefix('admin/')->group(function(){
         Route::get('slide-edit/{id}', 'editPage')->name('slide.editPage');
         Route::post('slide-update/{id}', 'update')->name('slide.update');
         Route::get('slide-destroy/{id}', 'destroy')->name('slide.destroy');
+    });
+    Route::controller(FeatureController::class)->group(function () {
+
+        Route::get('feature', 'index')->name('feature.page');
+        Route::get('feature-create', 'create')->name('feature.createPage');
+        Route::post('feature-store', 'store')->name('feature.store');
+        Route::get('feature-edit/{id}', 'editPage')->name('feature.editPage');
+        Route::post('slide-update/{id}', 'update')->name('feature.update');
+        Route::get('feature-destroy/{id}', 'destroy')->name('feature.destroy');
     });
 
 });
