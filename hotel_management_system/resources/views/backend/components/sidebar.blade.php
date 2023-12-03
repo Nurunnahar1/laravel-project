@@ -23,7 +23,7 @@
 
             <li class=""><a class="nav-link" href="{{ route('feature.page') }}"><i class="fas fa-hand-point-right"></i> <span>Feature</span></a></li>
 
-            <li class=""><a class="nav-link" href="form.html"><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
+            <li class=""><a class="nav-link" href="{{ route('testimonial.page') }}"><i class="fas fa-hand-point-right"></i> <span>Testimonials</span></a></li>
 
             <li class=""><a class="nav-link" href="table.html"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
 

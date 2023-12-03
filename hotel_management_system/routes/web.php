@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\adminSlideController;
 use App\Http\Controllers\Backend\FeatureController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
@@ -46,13 +47,21 @@ Route::prefix('admin/')->group(function(){
         Route::get('slide-destroy/{id}', 'destroy')->name('slide.destroy');
     });
     Route::controller(FeatureController::class)->group(function () {
-
         Route::get('feature', 'index')->name('feature.page');
         Route::get('feature-create', 'create')->name('feature.createPage');
         Route::post('feature-store', 'store')->name('feature.store');
         Route::get('feature-edit/{id}', 'editPage')->name('feature.editPage');
-        Route::post('slide-update/{id}', 'update')->name('feature.update');
+        Route::post('feature-update/{id}', 'update')->name('feature.update');
         Route::get('feature-destroy/{id}', 'destroy')->name('feature.destroy');
     });
+    Route::controller(TestimonialController::class)->group(function () {
+        Route::get('testimonial', 'index')->name('testimonial.page');
+        Route::get('testimonial-create', 'create')->name('testimonial.createPage');
+        Route::post('testimonial-store', 'store')->name('testimonial.store');
+        Route::get('testimonial-edit/{id}', 'editPage')->name('testimonial.editPage');
+        Route::post('testimonial-update/{id}', 'update')->name('testimonial.update');
+        Route::get('testimonial-destroy/{id}', 'destroy')->name('testimonial.destroy');
+    });
+
 
 });
