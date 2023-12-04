@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\PhotoController;
+use \App\Http\Controllers\Frontend\PhotoController as FrontendPhotoController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Frontend\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +20,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/blog/{id}',[BlogController::class,'singleBlog'])->name('single.blog');
+Route::get('/photo-gallery',[FrontendPhotoController::class,'index'])->name('photo.gallery');
 
 
 //=============Backend routes========
@@ -73,6 +76,14 @@ Route::prefix('admin/')->group(function(){
         Route::get('post-edit/{id}', 'editPage')->name('post.editPage');
         Route::post('post-update/{id}', 'update')->name('post.update');
         Route::get('post-destroy/{id}', 'destroy')->name('post.destroy');
+    });
+    Route::controller(PhotoController::class)->group(function () {
+        Route::get('photo', 'index')->name('photo.page');
+        Route::get('photo-create', 'create')->name('photo.createPage');
+        Route::post('photo-store', 'store')->name('photo.store');
+        Route::get('photo-edit/{id}', 'editPage')->name('photo.editPage');
+        Route::post('photo-update/{id}', 'update')->name('photo.update');
+        Route::get('photo-destroy/{id}', 'destroy')->name('photo.destroy');
     });
 
 
