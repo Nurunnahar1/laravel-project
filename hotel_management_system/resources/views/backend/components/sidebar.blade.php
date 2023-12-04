@@ -25,9 +25,9 @@
 
             <li class=""><a class="nav-link" href="{{ route('testimonial.page') }}"><i class="fas fa-hand-point-right"></i> <span>Testimonials</span></a></li>
 
-            <li class=""><a class="nav-link" href="table.html"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
+            <li class=""><a class="nav-link" href="{{ route('post.page') }}"><i class="fas fa-hand-point-right"></i> <span>Post</span></a></li>
 
-            <li class=""><a class="nav-link" href="invoice.html"><i class="fas fa-hand-point-right"></i> <span>Invoice</span></a></li>
+     
 
         </ul>
     </aside>

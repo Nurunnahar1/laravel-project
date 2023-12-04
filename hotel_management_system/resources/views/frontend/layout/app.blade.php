@@ -30,6 +30,7 @@
     @include('frontend.components.home_feacher')
     @include('frontend.components.home_room')
     @include('frontend.components.testimonial')
+    @include('frontend.components.blog_site')
     @include('frontend.components.footer')
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
 

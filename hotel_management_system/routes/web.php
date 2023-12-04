@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Backend\adminSlideController;
-use App\Http\Controllers\Backend\FeatureController;
-use App\Http\Controllers\Backend\TestimonialController;
-use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\PostController; 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\FeatureController;
+use App\Http\Controllers\Backend\adminSlideController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\AdminProfileController;
 
 
@@ -61,6 +62,14 @@ Route::prefix('admin/')->group(function(){
         Route::get('testimonial-edit/{id}', 'editPage')->name('testimonial.editPage');
         Route::post('testimonial-update/{id}', 'update')->name('testimonial.update');
         Route::get('testimonial-destroy/{id}', 'destroy')->name('testimonial.destroy');
+    });
+    Route::controller(PostController::class)->group(function () {
+        Route::get('post', 'index')->name('post.page');
+        Route::get('post-create', 'create')->name('post.createPage');
+        Route::post('post-store', 'store')->name('post.store');
+        Route::get('post-edit/{id}', 'editPage')->name('post.editPage');
+        Route::post('post-update/{id}', 'update')->name('post.update');
+        Route::get('post-destroy/{id}', 'destroy')->name('post.destroy');
     });
 
 
