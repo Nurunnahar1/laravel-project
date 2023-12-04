@@ -7,7 +7,7 @@
             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="{{ route('home') }}" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="about.html" class="nav-link">About</a>
@@ -44,7 +44,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a href="contact.html" class="nav-link">Contact</a>

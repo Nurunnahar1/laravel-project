@@ -1,9 +1,8 @@
-
 <div class="blog-item">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="main-header">Latest Posts</h2>
+                <h2 class="main-header">Blog</h2>
             </div>
         </div>
         <div class="row">
@@ -29,5 +28,10 @@
 
             @endforeach
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 m-auto ">
+        {{ $posts->links() }}
     </div>
 </div>

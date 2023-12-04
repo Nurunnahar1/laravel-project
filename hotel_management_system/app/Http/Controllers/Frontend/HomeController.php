@@ -15,7 +15,7 @@ class HomeController extends Controller
         $slides = Slide::get();
         $features = Feature::get();
         $testimonials = Testimonial::get();
-        $posts = Post::get();
+        $posts = Post::orderBy('id', 'desc')->limit(3)->get();
         return view('frontend.home',compact('slides','features','testimonials','posts'));
     }
 }

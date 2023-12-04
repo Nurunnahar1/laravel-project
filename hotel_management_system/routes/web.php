@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Backend\PostController; 
+use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Frontend\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -15,6 +16,8 @@ use App\Http\Controllers\Backend\AdminProfileController;
 //     return view('frontend.layout.app');
 // });
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/blog',[BlogController::class,'index'])->name('blog');
+Route::get('/blog/{id}',[BlogController::class,'singleBlog'])->name('single.blog');
 
 
 //=============Backend routes========
