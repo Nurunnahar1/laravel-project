@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('role_id')->default(2);
-            $table->unsignedInteger('is_system_admin')->default(0);
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
+            $table->text('address')->nullable();
             $table->string('image')->nullable();
-            $table->string('address')->nullable();
+            $table->enum('role',['admin','customer'])->default('customer');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
