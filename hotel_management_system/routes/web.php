@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Backend\FaqController;
+use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
 use App\Http\Controllers\Backend\PhotoController;
 use App\Http\Controllers\Backend\VideoController;
 use \App\Http\Controllers\Frontend\PhotoController as FrontendPhotoController;
+use \App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Frontend\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +25,8 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/blog/{id}',[BlogController::class,'singleBlog'])->name('single.blog');
 Route::get('/photo-gallery',[FrontendPhotoController::class,'index'])->name('photo.gallery');
+Route::get('/video-gallery',[FrontendVideoController::class,'index'])->name('video.gallery');
+Route::get('/faq',[FrontendFaqController::class,'index'])->name('faq');
 
 
 //=============Backend routes========
@@ -93,6 +98,14 @@ Route::prefix('admin/')->group(function(){
         Route::get('video-edit/{id}', 'editPage')->name('video.editPage');
         Route::post('video-update/{id}', 'update')->name('video.update');
         Route::get('video-destroy/{id}', 'destroy')->name('video.destroy');
+    });
+    Route::controller(FaqController::class)->group(function () {
+        Route::get('faq', 'index')->name('faq.page');
+        Route::get('faq-create', 'create')->name('faq.createPage');
+        Route::post('faq-store', 'store')->name('faq.store');
+        Route::get('faq-edit/{id}', 'editPage')->name('faq.editPage');
+        Route::post('faq-update/{id}', 'update')->name('faq.update');
+        Route::get('faq-destroy/{id}', 'destroy')->name('faq.destroy');
     });
 
 
