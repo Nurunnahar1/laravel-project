@@ -27,6 +27,7 @@
 
             <li class=""><a class="nav-link" href="{{ route('post.page') }}"><i class="fas fa-hand-point-right"></i> <span>Post</span></a></li>
             <li class=""><a class="nav-link" href="{{ route('photo.page') }}"><i class="fas fa-hand-point-right"></i> <span>Photo Gallery</span></a></li>
+            <li class=""><a class="nav-link" href="{{ route('video.page') }}"><i class="fas fa-hand-point-right"></i> <span>Video Gallery</span></a></li>
 
 
 

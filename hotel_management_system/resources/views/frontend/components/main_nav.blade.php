@@ -39,7 +39,7 @@
                                 <a href="{{ route('photo.gallery') }}" class="nav-link">Photo Gallery</a>
                             </li>
                             <li class="nav-item">
-                                <a href="video-gallery.html" class="nav-link">Video Gallery</a>
+                                <a href="{{ route('video.page') }}" class="nav-link">Video Gallery</a>
                             </li>
                         </ul>
                     </li>
@@ -47,7 +47,7 @@
                         <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="" class="nav-link">Contact</a>
                     </li>
                 </ul>
             </div>

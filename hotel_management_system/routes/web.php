@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\PhotoController;
+use App\Http\Controllers\Backend\VideoController;
 use \App\Http\Controllers\Frontend\PhotoController as FrontendPhotoController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Frontend\BlogController;
@@ -84,6 +85,14 @@ Route::prefix('admin/')->group(function(){
         Route::get('photo-edit/{id}', 'editPage')->name('photo.editPage');
         Route::post('photo-update/{id}', 'update')->name('photo.update');
         Route::get('photo-destroy/{id}', 'destroy')->name('photo.destroy');
+    });
+    Route::controller(VideoController::class)->group(function () {
+        Route::get('video', 'index')->name('video.page');
+        Route::get('video-create', 'create')->name('video.createPage');
+        Route::post('video-store', 'store')->name('video.store');
+        Route::get('video-edit/{id}', 'editPage')->name('video.editPage');
+        Route::post('video-update/{id}', 'update')->name('video.update');
+        Route::get('video-destroy/{id}', 'destroy')->name('video.destroy');
     });
 
 
