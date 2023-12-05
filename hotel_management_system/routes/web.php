@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
 use App\Http\Controllers\Backend\PhotoController;
@@ -108,5 +109,10 @@ Route::prefix('admin/')->group(function(){
         Route::get('faq-destroy/{id}', 'destroy')->name('faq.destroy');
     });
 
+    Route::controller(AboutController::class)->group(function () {
+     
+        Route::get('about-edit', 'editPage')->name('about.editPage');
+        Route::post('about-update', 'update')->name('about.update');
 
+    });
 });
