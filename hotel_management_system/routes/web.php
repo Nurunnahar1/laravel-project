@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\PrivacyController;
+use App\Http\Controllers\Frontend\PrivacyController as FrontendPrivacyController;
 use App\Http\Controllers\Backend\TermController;
 use App\Http\Controllers\Frontend\TermController as FrontentTermController;
 use App\Http\Controllers\Frontend\AboutController as FrontndAboutController;
@@ -33,6 +35,7 @@ Route::get('/video-gallery',[FrontendVideoController::class,'index'])->name('vid
 Route::get('/faq',[FrontendFaqController::class,'index'])->name('faq');
 Route::get('/about',[FrontndAboutController::class,'index'])->name('about');
 Route::get('/term',[FrontentTermController::class,'index'])->name('term');
+Route::get('/privacy',[FrontendPrivacyController::class,'index'])->name('privacy');
 
 
 //=============Backend routes========
@@ -121,6 +124,10 @@ Route::prefix('admin/')->group(function(){
     Route::controller(TermController::class)->group(function () {
         Route::get('term-edit', 'editPage')->name('term.editPage');
         Route::post('term-update', 'update')->name('term.update');
+    });
+    Route::controller(PrivacyController::class)->group(function () {
+        Route::get('privacy-edit', 'editPage')->name('privacy.editPage');
+        Route::post('privacy-update', 'update')->name('privacy.update');
     });
 
 

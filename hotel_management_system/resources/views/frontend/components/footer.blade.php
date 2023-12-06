@@ -6,8 +6,8 @@
                     <h2 class="heading">Site Links</h2>
                     <ul class="useful-links">
                         <li><a href="rooms.html">Rooms & Suites</a></li>
-                        <li><a href="photo-gallery.html">Photo Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="{{ route('photo.gallery') }}">Photo Gallery</a></li>
+                        <li><a href="{{ route('blog') }}">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -16,9 +16,9 @@
                 <div class="item">
                     <h2 class="heading">Useful Links</h2>
                     <ul class="useful-links">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('term') }}">Terms and Conditions</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                         <li><a href="{{ route('faq') }}">Faq</a></li>
                     </ul>
                 </div>
