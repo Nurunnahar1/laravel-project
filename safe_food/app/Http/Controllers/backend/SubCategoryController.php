@@ -16,14 +16,9 @@ class SubCategoryController extends Controller
 }
 
 
-
-
-
-/**
- * Show the form for creating a new resource.
- */
 public function create() {
-    return view('backend.page.category.create');
+    $allCategory = Category::all();
+    return view('backend.page.sub-category.create',compact('allCategory'));
 }
 
 /**
@@ -35,26 +30,101 @@ public function store(StoreSubCategoryRequest $request) {
 
         $file = request()->file('image');
         $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension(); //for name making
-        $file->move(public_path('/uploads/category'), $fileName);
-        $filePath = "uploads/category/{$fileName}";
+        $file->move(public_path('/uploads/sub_category'), $fileName);
+        $filePath = "uploads/sub_category/{$fileName}";
 
-        Category::create([
+        SubCategory::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'image' => $filePath,
+            'category_id'=>$request->category_id
         ]);
 
-        toastr()->success('Category created with image');
-        return redirect()->route('category.index');
+        toastr()->success('SubCategory created with image');
+        return redirect()->route('sub-category.index');
     }
-    Category::create([
+    SubCategory::create([
         'name' => $request->name,
         'slug' => Str::slug($request->name),
+        'category_id'=>$request->category_id
     ]);
-    toastr()->success('Category created without image');
-    return redirect()->route('category.index');
+    toastr()->success('SubCategory created without image');
+    return redirect()->route('sub-category.index');
+
+}
+public function edit(string $slug) {
+    $categories = Category::where('slug', $slug)->first();
+
+    return view('backend.page.sub-category.edit', compact('categories'));
 
 }
 
+/**
+ * Update the specified resource in storage.
+ */
+public function update(UpdateSubCategoryRequest $request, string $slug) {
+
+
+        $subCategory = SubCategory::find($slug);
+
+        if ($request->hasFile('image')) {
+            // Delete the old image file if it exists
+            if ($subCategory->image) {
+                unlink(public_path($subCategory->image));
+            }
+
+            $file = $request->file('image');
+            $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/sub_category'), $fileName);
+            $filePath = "uploads/sub_category/{$fileName}";
+
+            $subCategory->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $filePath,
+                'category_id' => $request->category_id,
+            ]);
+
+            toastr()->success('SubCategory updated with image');
+        } else {
+            $subCategory->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'category_id' => $request->category_id,
+            ]);
+
+            toastr()->success('SubCategory updated without image');
+        }
+
+        return redirect()->route('sub-category.index');
+
+
+}
+
+/**
+ * Remove the specified resource from storage.
+ */
+// public function destroy(string $slug) {
+
+//     try {
+
+//         $category = Category::where('slug', $slug)->first();
+
+//         $oldImagePath = public_path($category->image); // Get the full path to the old image
+
+//         if (file_exists($oldImagePath)) {
+//             // Delete the old image
+//             unlink($oldImagePath);
+//         }
+
+//         Category::where('slug', $slug)->delete();
+
+//         toastr()->success('Category deleted');
+//         return redirect()->route('category.index');
+
+//     } catch (Exception $e) {
+//         return "something went wrong";
+//     }
+// }
 
 }

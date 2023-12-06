@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\TermController;
+use App\Http\Controllers\Frontend\TermController as FrontentTermController;
+use App\Http\Controllers\Frontend\AboutController as FrontndAboutController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
 use App\Http\Controllers\Backend\PhotoController;
@@ -28,6 +31,8 @@ Route::get('/blog/{id}',[BlogController::class,'singleBlog'])->name('single.blog
 Route::get('/photo-gallery',[FrontendPhotoController::class,'index'])->name('photo.gallery');
 Route::get('/video-gallery',[FrontendVideoController::class,'index'])->name('video.gallery');
 Route::get('/faq',[FrontendFaqController::class,'index'])->name('faq');
+Route::get('/about',[FrontndAboutController::class,'index'])->name('about');
+Route::get('/term',[FrontentTermController::class,'index'])->name('term');
 
 
 //=============Backend routes========
@@ -110,9 +115,13 @@ Route::prefix('admin/')->group(function(){
     });
 
     Route::controller(AboutController::class)->group(function () {
-     
         Route::get('about-edit', 'editPage')->name('about.editPage');
         Route::post('about-update', 'update')->name('about.update');
-
     });
+    Route::controller(TermController::class)->group(function () {
+        Route::get('term-edit', 'editPage')->name('term.editPage');
+        Route::post('term-update', 'update')->name('term.update');
+    });
+
+
 });

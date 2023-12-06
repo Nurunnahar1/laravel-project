@@ -33,6 +33,8 @@
                     <div class="card-body">
                         <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+
+
                             <div class="mb-3">
                                 <label class="form-label">Category name</label>
                                 <input type="text" name="name"
@@ -41,6 +43,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            
                             {{-- category image	 --}}
 
                             <div class="mb-3">

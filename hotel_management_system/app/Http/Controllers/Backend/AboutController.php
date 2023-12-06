@@ -17,6 +17,6 @@ class AboutController extends Controller
         $about->heading = $request->heading;
         $about->content = $request->content;
         $about->update();
-        return redirect()->route('about.editPage')->with('success','About data updated successfully');
+        return redirect()->back()->with('success','About data updated successfully');
     }
 }

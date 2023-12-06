@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 @section('page-title')
-    create caetegory
+    create Subcaetegory
 @endsection
 
 @push('style')
@@ -16,9 +16,9 @@
                 <div class="col-6">
                     <h1>Create Category</h1>
                     <div class="d-flex">
-                        <a href="{{ route('category.index') }}" class="btn btn-primary"><i
+                        <a href="{{ route('sub-category.index') }}" class="btn btn-primary"><i
                                 class="fa-solid fa-angles-left"></i>
-                            Category list</a>
+                            Sub Category list</a>
                     </div>
                 </div>
                 <!-- Title End -->
@@ -31,16 +31,37 @@
             <div class="col-12 mb-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('sub-category.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="mb-3">
-                                <label class="form-label">Category name</label>
-                                <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" value="" id="">
-                                @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
+
+
+                            <div class="col-12 mb-3">
+                                <label for="category_id" class="form-label">Select Category</label>
+                                 <select name="category_id" class="form-select" id="">
+                                    @foreach ($allCategory as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+                                    @endforeach
+                                 </select>
+                                @error('category_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="name" class="form-label">Sub Category Name</label>
+                                <input type="text" name="name" class="form-control  " id="name">
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+
+                                @enderror
+                            </div>
+
+
                             {{-- category image	 --}}
 
                             <div class="mb-3">

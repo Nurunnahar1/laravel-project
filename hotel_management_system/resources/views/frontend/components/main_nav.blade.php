@@ -10,7 +10,7 @@
                         <a href="{{ route('home') }}" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="about.html" class="nav-link">About</a>
+                        <a href="{{ route('about') }}" class="nav-link">About</a>
                     </li>
                     <li class="nav-item">
                         <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>

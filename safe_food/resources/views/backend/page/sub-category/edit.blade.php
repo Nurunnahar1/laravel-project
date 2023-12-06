@@ -26,7 +26,7 @@
             <div class="col-12 mb-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('category.update', $category->slug) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('category.update', $categories->slug) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
