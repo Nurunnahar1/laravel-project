@@ -60,7 +60,8 @@
                                             <span style="display: inline-block"><button class="btn btn-info"><i
                                                         class="fa-solid fa-pen-to-square"></i> <a
                                                         href="{{ route('sub-category.edit', $item->slug) }}"
-                                                        class="text-white">Edit</a></button></span>
+                                                        class="text-white">Edit</a></button>
+                                            </span>
 
                                             <span style="display: inline-block">
                                                 <form action="{{ route('sub-category.destroy', $item->slug) }}" method="post"

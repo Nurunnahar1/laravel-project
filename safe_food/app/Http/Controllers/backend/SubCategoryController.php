@@ -21,9 +21,7 @@ public function create() {
     return view('backend.page.sub-category.create',compact('allCategory'));
 }
 
-/**
- * Store a newly created resource in storage.
- */
+
 public function store(StoreSubCategoryRequest $request) {
 
     if ($request->hasFile('image')) {
@@ -53,15 +51,13 @@ public function store(StoreSubCategoryRequest $request) {
 
 }
 public function edit(string $slug) {
-    $categories = Category::where('slug', $slug)->first();
-
-    return view('backend.page.sub-category.edit', compact('categories'));
-
+    $categories = Category::get();
+    $sub_categories = SubCategory::where('slug', $slug)->first();
+    return view('backend.page.sub-category.edit', compact('categories','sub_categories'));
 }
 
-/**
- * Update the specified resource in storage.
- */
+
+
 public function update(UpdateSubCategoryRequest $request, string $slug) {
 
 
