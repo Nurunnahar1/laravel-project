@@ -17,7 +17,8 @@
                     <li class="{{ Request::is('admin/about/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('about.editPage') }}"><i class="fas fa-angle-right"></i> About</a></li>
                     <li class=""><a class="nav-link" href="{{ route('term.editPage') }}"><i class="fas fa-angle-right"></i> Term & Condition</a></li>
                     <li class=""><a class="nav-link" href="{{ route('privacy.editPage') }}"><i class="fas fa-angle-right"></i>Privacy & Policy</a></li>
-              
+                    <li class=""><a class="nav-link" href="{{ route('contact.editPage') }}"><i class="fas fa-angle-right"></i>Contact</a></li>
+
                 </ul>
             </li>
 

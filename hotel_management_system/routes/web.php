@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Backend\PrivacyController;
 use App\Http\Controllers\Frontend\PrivacyController as FrontendPrivacyController;
 use App\Http\Controllers\Backend\TermController;
@@ -36,6 +38,7 @@ Route::get('/faq',[FrontendFaqController::class,'index'])->name('faq');
 Route::get('/about',[FrontndAboutController::class,'index'])->name('about');
 Route::get('/term',[FrontentTermController::class,'index'])->name('term');
 Route::get('/privacy',[FrontendPrivacyController::class,'index'])->name('privacy');
+Route::get('/contact',[FrontendContactController::class,'index'])->name('contact');
 
 
 //=============Backend routes========
@@ -128,6 +131,10 @@ Route::prefix('admin/')->group(function(){
     Route::controller(PrivacyController::class)->group(function () {
         Route::get('privacy-edit', 'editPage')->name('privacy.editPage');
         Route::post('privacy-update', 'update')->name('privacy.update');
+    });
+    Route::controller(ContactController::class)->group(function () {
+        Route::get('contact-edit', 'editPage')->name('contact.editPage');
+        Route::post('contact-update', 'update')->name('contact.update');
     });
 
 
