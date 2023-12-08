@@ -13,3 +13,4 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/daterangepicker.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/meanmenu.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/iziToast.min.css') }}">

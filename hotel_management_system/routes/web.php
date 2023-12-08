@@ -26,9 +26,6 @@ use App\Http\Controllers\Backend\AdminProfileController;
 
 
 //============ frontend routes===========
-// Route::get('/', function () {
-//     return view('frontend.layout.app');
-// });
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/blog/{id}',[BlogController::class,'singleBlog'])->name('single.blog');
@@ -39,6 +36,7 @@ Route::get('/about',[FrontndAboutController::class,'index'])->name('about');
 Route::get('/term',[FrontentTermController::class,'index'])->name('term');
 Route::get('/privacy',[FrontendPrivacyController::class,'index'])->name('privacy');
 Route::get('/contact',[FrontendContactController::class,'index'])->name('contact');
+Route::post('/contact-send-email',[FrontendContactController::class,'sendEmail'])->name('contact.sendEmail');
 
 
 //=============Backend routes========

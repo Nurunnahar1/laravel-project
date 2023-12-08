@@ -13,3 +13,4 @@
  <script src="{{ asset('frontend/js/daterangepicker.min.js') }}"></script>
  <script src="{{ asset('frontend/js/sticky_sidebar.js') }}"></script>
  <script src="{{ asset('frontend/js/jquery.meanmenu.js') }}"></script>
+ <script src="{{ asset('frontend/js/iziToast.min.js') }}"></script>
