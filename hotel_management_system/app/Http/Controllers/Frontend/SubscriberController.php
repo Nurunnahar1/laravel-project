@@ -40,4 +40,17 @@ class SubscriberController extends Controller
             return response()->json(['code' =>1, 'success_message' =>'Email sent successfully']);
         }
     }
+
+    function verify($email, $token){
+        $subscriber_data = Subscriber::where('email', $email)->where('token', $token)->first();
+
+        if($subscriber_data){
+            $subscriber_data->token = '';
+            $subscriber_data->status = 1;
+            $subscriber_data->update();
+            return redirect()->route('home')->with('success_message', 'Your subscription has been verified successfully');
+        }else{
+            return redirect()->route('home');
+        }
+    }
 }

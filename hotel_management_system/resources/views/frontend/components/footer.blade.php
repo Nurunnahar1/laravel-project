@@ -98,6 +98,20 @@
 <div class="scroll-top">
     <i class="fa fa-angle-up"></i>
 </div>
+
+
+{{-- success message --}}
+
+@if(session()->get('success'))
+    <script>
+        iziToast.success({
+            title: '',
+            position: 'topRight',
+            message: '{{ session()->get('success') }}',
+        });
+    </script>
+@endif
+
 <script>
     (function($){
         $(".form_subscriber_ajax").on('submit', function(event){

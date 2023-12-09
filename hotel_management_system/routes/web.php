@@ -141,5 +141,7 @@ Route::prefix('admin/')->group(function(){
         Route::post('contact-update', 'update')->name('contact.update');
     });
     Route::get('subscriber-show',[SubscriberController::class,'showSubscriber'])->name('subscriber.show');
+    Route::get('subscriber-send-email',[SubscriberController::class,'sendEmailSubscriber'])->name('subscriber.sendEmail');
+    Route::post('subscriber-send-email-submit',[SubscriberController::class,'sendEmailSubmit'])->name('submit.sendEmail');
 
 });

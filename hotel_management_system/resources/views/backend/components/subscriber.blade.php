@@ -1,21 +1,12 @@
 @extends('backend.layout.app')
-@section('title') Testimonial @endsection
+@section('title') Subscriber @endsection
 @section('content')
 
 
     <section class="section">
 
         <div class="section-body">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-end">
-                        <a href="{{ route('subscriber.createPage') }}" class="btn btn-primary">
-                            <i class="fas fa-plus-circle"></i>
-                            Add Testimonial
-                        </a>
-                    </div>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -25,27 +16,16 @@
                                     <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Photo</th>
-                                        <th>Name</th>
-                                        <th>Designation</th>
-                                        <th>Comment</th>
-                                        <th>Action</th>
+                                        <th>Email</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($subscribers as $key => $row)
-                                        <tr>
-
-
-
-                                            <td>{{ $row->name }}</td>
-                                            <td>{{ $row->designation }}</td>
-
-
-                                        </tr>
+                                            <tr>
+                                                <td>{{ $key+1 }}</td>
+                                                <td>{{ $row->email }}</td>
+                                            </tr>
                                         @endforeach
-
-
                                     </tbody>
                                 </table>
                             </div>
