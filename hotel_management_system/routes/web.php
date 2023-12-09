@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\SubscriberController;
+use App\Http\Controllers\Frontend\SubscriberController as FrontendSubscriberController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Backend\PrivacyController;
 use App\Http\Controllers\Frontend\PrivacyController as FrontendPrivacyController;
@@ -36,7 +38,11 @@ Route::get('/about',[FrontndAboutController::class,'index'])->name('about');
 Route::get('/term',[FrontentTermController::class,'index'])->name('term');
 Route::get('/privacy',[FrontendPrivacyController::class,'index'])->name('privacy');
 Route::get('/contact',[FrontendContactController::class,'index'])->name('contact');
+
 Route::post('/contact-send-email',[FrontendContactController::class,'sendEmail'])->name('contact.sendEmail');
+
+Route::post('/subscriber-send-email',[FrontendSubscriberController::class,'sendEmail'])->name('subscriber.sendEmail');
+Route::get('/subscriber-verify/{email}/{token}',[FrontendSubscriberController::class,'verify'])->name('subscriber.verify');
 
 
 //=============Backend routes========
@@ -134,6 +140,6 @@ Route::prefix('admin/')->group(function(){
         Route::get('contact-edit', 'editPage')->name('contact.editPage');
         Route::post('contact-update', 'update')->name('contact.update');
     });
-
+    Route::get('subscriber-show',[SubscriberController::class,'showSubscriber'])->name('subscriber.show');
 
 });

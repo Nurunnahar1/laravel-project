@@ -86,50 +86,6 @@
         });
     })(jQuery);
 </script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
-    <script>
-        let contactForm = document.getElementById('form_contact_ajax');
-        contactForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-            let message = document.getElementById('message').value;
-
-
-
-            if (name.length == 00) {
-                alert('insert your name')
-            } else if (email.length == 00) {
-                alert('insert your email')
-            } else if (message.length == 00) {
-                alert('insert your message')
-            } else {
-                let formData = {
-                    fullName: name,
-                    email: email,
-
-                    message: message
-                }
-                let url = "/contactRequest";
-
-                showLoader();
-
-                let result = await axios.post(url, formData);
-
-                hideLoader()
-
-
-
-                if (result.status == 200 && result.data === 1) {
-                    alert('success');
-                    contactForm.reset();
-
-                } else {
-                    alert('error')
-                }
-            }
-
-        });
-    </script> --}}
+ 
     <div id="loader"></div>
 @endsection
