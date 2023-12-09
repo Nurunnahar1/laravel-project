@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 @section('page-title')
-    create Subcaetegory
+    create caetegory
 @endsection
 
 @push('style')
@@ -16,9 +16,9 @@
                 <div class="col-6">
                     <h1>Create Category</h1>
                     <div class="d-flex">
-                        <a href="{{ route('sub-category.index') }}" class="btn btn-primary"><i
+                        <a href="{{ route('category.index') }}" class="btn btn-primary"><i
                                 class="fa-solid fa-angles-left"></i>
-                            Sub Category list</a>
+                            Category list</a>
                     </div>
                 </div>
                 <!-- Title End -->
@@ -34,30 +34,21 @@
                         <form action="{{ route('sub-category.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
-
-                            <div class="col-12 mb-3">
-                                <label for="category_id" class="form-label">Select Category</label>
-                                 <select name="category_id" class="form-select" id="">
-                                    @foreach ($allCategory as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-
+                            <div class="form-group">
+                                <select class="form-select mb-3" aria-label="Default select example" name="category_id">
+                                    <option selected="">Select category</option>
+                                    @foreach ($allCategory as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
-                                 </select>
-                                @error('category_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                </select>
                             </div>
 
-                            <div class="col-12 mb-3">
-                                <label for="name" class="form-label">Sub Category Name</label>
-                                <input type="text" name="name" class="form-control  " id="name">
+                            <div class="mb-3">
+                                <label class="form-label">Sub Category name</label>
+                                <input type="text" name="name"
+                                    class="form-control @error('name') is-invalid @enderror" value="" id="">
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
@@ -65,7 +56,7 @@
                             {{-- category image	 --}}
 
                             <div class="mb-3">
-                                <label class="form-label">Category image</label>
+                                <label class="form-label">Sub Category image</label>
                                 <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
                                 name="image" type="file" id="image">
                             </div>
