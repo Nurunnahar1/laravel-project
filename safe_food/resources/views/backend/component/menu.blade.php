@@ -84,6 +84,25 @@
                 </li>
             </ul>
         </li>
+         {{-- Service --}}
+         <li>
+            <a href="#service">
+                <i data-cs-icon="cupcake" class="icon" data-cs-size="18"></i>
+                <span class="label">Service</span>
+            </a>
+            <ul id="service">
+                <li>
+                    <a href="{{ route('service.index') }}">
+                        <span class="label">All service</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('service.create') }}">
+                        <span class="label">Create service</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
     </ul>
 </div>

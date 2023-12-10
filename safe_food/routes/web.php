@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\backend\SliderController;
@@ -37,6 +38,8 @@ Route::prefix('admin/')->middleware(['auth'])->group(function () {
 
     // slider
     Route::resource('slider', SliderController::class);
+    // service
+    Route::resource('service', ServiceController::class);
 
 
 });
