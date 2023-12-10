@@ -1,30 +1,31 @@
 <?php
 
-use App\Http\Controllers\Backend\AboutController;
-use App\Http\Controllers\Backend\ContactController;
-use App\Http\Controllers\Backend\SubscriberController;
-use App\Http\Controllers\Frontend\SubscriberController as FrontendSubscriberController;
-use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
-use App\Http\Controllers\Backend\PrivacyController;
-use App\Http\Controllers\Frontend\PrivacyController as FrontendPrivacyController;
-use App\Http\Controllers\Backend\TermController;
-use App\Http\Controllers\Frontend\TermController as FrontentTermController;
-use App\Http\Controllers\Frontend\AboutController as FrontndAboutController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FaqController;
-use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
+use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\TermController;
+use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\PhotoController;
 use App\Http\Controllers\Backend\VideoController;
-use \App\Http\Controllers\Frontend\PhotoController as FrontendPhotoController;
-use \App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
-use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Frontend\BlogController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\FeatureController;
+use App\Http\Controllers\Backend\PrivacyController;
+use App\Http\Controllers\Backend\AmenitiesController;
 use App\Http\Controllers\Backend\adminSlideController;
+use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
+use App\Http\Controllers\Frontend\TermController as FrontentTermController;
+use App\Http\Controllers\Frontend\AboutController as FrontndAboutController;
+use \App\Http\Controllers\Frontend\PhotoController as FrontendPhotoController;
+use \App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
+use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
+use App\Http\Controllers\Frontend\PrivacyController as FrontendPrivacyController;
+use App\Http\Controllers\Frontend\SubscriberController as FrontendSubscriberController;
 
 
 //============ frontend routes===========
@@ -140,8 +141,18 @@ Route::prefix('admin/')->group(function(){
         Route::get('contact-edit', 'editPage')->name('contact.editPage');
         Route::post('contact-update', 'update')->name('contact.update');
     });
-    Route::get('subscriber-show',[SubscriberController::class,'showSubscriber'])->name('subscriber.show');
-    Route::get('subscriber-send-email',[SubscriberController::class,'sendEmailSubscriber'])->name('subscriber.sendEmail');
-    Route::post('subscriber-send-email-submit',[SubscriberController::class,'sendEmailSubmit'])->name('submit.sendEmail');
+    Route::controller(SubscriberController::class)->group(function () {
+        Route::get('subscriber-show','showSubscriber')->name('subscriber.show');
+        Route::get('subscriber-send-email','sendEmailSubscriber')->name('subscriber.sendEmail');
+        Route::post('subscriber-send-email-submit','sendEmailSubmit')->name('submit.sendEmail');
+    });
+    Route::controller(AmenitiesController::class)->group(function () {
+        Route::get('amenities', 'index')->name('amenities.page');
+        Route::get('amenities-create', 'create')->name('amenities.createPage');
+        Route::post('amenities-store', 'store')->name('amenities.store');
+        Route::get('amenities-edit/{id}', 'editPage')->name('amenities.editPage');
+        Route::post('amenities-update/{id}', 'update')->name('amenities.update');
+        Route::get('amenities-destroy/{id}', 'destroy')->name('amenities.destroy');
+    });
 
 });

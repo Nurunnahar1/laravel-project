@@ -36,13 +36,21 @@
             <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>
                 <ul class="dropdown-menu" style="display: block;">
-
                     <li class="{{ Request::is('admin/subscriber-show/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('subscriber.show') }}"><i class="fas fa-angle-right"></i> Subscriber</a></li>
                     <li class="{{ Request::is('admin/subscriber-send-email/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('subscriber.sendEmail') }}"><i class="fas fa-angle-right"></i> Send Email</a></li>
-
-
                 </ul>
             </li>
+
+            <li class="nav-item dropdown ">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Hotel Section</span></a>
+                <ul class="dropdown-menu" style="display: block;">
+                    <li class="{{ Request::is('admin/amenities/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('amenities.page') }}"><i class="fas fa-angle-right"></i>Amenities</a></li>
+                    {{-- <li class="{{ Request::is('admin/amenities-send-email/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('amenities.sendEmail') }}"><i class="fas fa-angle-right"></i>Room</a></li> --}}
+                </ul>
+            </li>
+
+
+
 
 
         </ul>
