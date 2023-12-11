@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\backend\ServiceController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\ServiceController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -41,12 +42,14 @@ Route::prefix('admin/')->middleware(['auth'])->group(function () {
     // service
     Route::resource('service', ServiceController::class);
 
+    Route::controller(AboutController::class)->group(function () {
+        Route::get('about-edit', 'editPage')->name('about.editPage');
+        Route::post('about-update/{id}', 'update')->name('about.update');
+    });
+
+
 
 });
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+
 
 require __DIR__ . '/auth.php';

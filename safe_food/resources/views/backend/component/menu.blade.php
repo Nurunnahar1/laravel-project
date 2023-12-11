@@ -103,6 +103,21 @@
                 </li>
             </ul>
         </li>
+         {{-- Service --}}
+         <li>
+            <a href="#service">
+                <i data-cs-icon="cupcake" class="icon" data-cs-size="18"></i>
+                <span class="label">About</span>
+            </a>
+            <ul id="service">
+                <li>
+                    <a href="{{ route('about.editPage') }}">
+                        <span class="label">About Update</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
 
     </ul>
 </div>

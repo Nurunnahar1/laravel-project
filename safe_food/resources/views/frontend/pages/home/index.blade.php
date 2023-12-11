@@ -108,7 +108,7 @@
                                     <div class="services__card--topbar d-flex justify-content-between">
                                         <div class="services__card--icon mb-20">
                                             <img class="display-block services__card--primary__icon" src="{{asset($item->image ?? "no-image.jpg")}}" alt="services-icon">
-                                            <img class="display-block services__card--secondary__icon" src="{{asset('frontend/assets/img/icon/service-icon1-white.webp')}}" alt="services-icon">
+                                            <img class="display-block services__card--secondary__icon" src="{{asset($item->image ?? "no-image.jpg")}}" alt="services-icon">
                                         </div>
                                         <div class="services__card--number">
                                             <span class="services__card--number__text">{{ $key+1 }}</span>
