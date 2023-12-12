@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->text('price');
+            $table->text('amenities');
+            $table->text('total_rooms');
+            $table->text('room_size');
+            $table->text('total_beds');
+            $table->text('total_bathrooms');
+            $table->text('total_balconies');
+            $table->text('total_guests');
+            $table->string('featured_photo');
+            $table->text('video_id');
             $table->timestamps();
         });
     }

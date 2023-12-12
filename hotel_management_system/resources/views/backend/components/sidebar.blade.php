@@ -45,7 +45,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Hotel Section</span></a>
                 <ul class="dropdown-menu" style="display: block;">
                     <li class="{{ Request::is('admin/amenities/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('amenities.page') }}"><i class="fas fa-angle-right"></i>Amenities</a></li>
-                    {{-- <li class="{{ Request::is('admin/amenities-send-email/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('amenities.sendEmail') }}"><i class="fas fa-angle-right"></i>Room</a></li> --}}
+                    <li class="{{ Request::is('admin/room/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('room.page') }}"><i class="fas fa-angle-right"></i>Room</a></li>
                 </ul>
             </li>
 

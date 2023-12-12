@@ -43,20 +43,36 @@
                                     @enderror
                                 </div>
 
+{{--
+                                <div class="mb-3">
+                                    <label class="form-label">Image</label>
+                                    <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
+                                    name="image" type="file" id="image">
+                                </div>
+                                @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                @enderror
+
+                                <div class="mb-3">
+                                    <img class="img-fluid" src="{{ asset($about->image ?? 'no-image.jpg') }}" id="newImg" width="150">
+                                </div> --}}
 
 
-                            <div class="mb-3">
-                                <label class="form-label">Image</label>
-                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
-                                name="image" type="file" id="image">
-                            </div>
-                            @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                            @enderror
 
-                            <div class="mb-3">
-                                <img class="img-fluid" src="{{asset($about->image ?? 'no-image.jpg')}}" id="newImg" width="150">
-                            </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Category image</label>
+                                    <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
+                                    name="image" type="file" id="image">
+                                </div>
+                                @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                @enderror
+
+                                <div class="mb-3">
+                                    <img class="img-fluid" src="{{asset($about->image ?? 'no-image.jpg')}}" id="newImg" width="150">
+                                </div>
+
 
 
                                 <div class="mb-3">
@@ -81,7 +97,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Signature image</label>
-                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
+                                <input oninput="new_signature_Img.src=window.URL.createObjectURL(this.files[0])" class="form-control"
                                 name="signature_image" type="file" id="signature_image">
                             </div>
                             @error('signature_image')
@@ -89,13 +105,13 @@
                             @enderror
 
                             <div class="mb-3">
-                                <img class="img-fluid" src="{{asset($about->signature_image ?? 'no-image.jpg')}}" id="newImg" width="150">
+                                <img class="img-fluid" src="{{asset($about->signature_image ?? 'no-image.jpg')}}" id="new_signature_Img" width="150">
                             </div>
 
 
                             <div class="mb-3">
                                 <label class="form-label">Category image</label>
-                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
+                                <input oninput="newAboutImg.src=window.URL.createObjectURL(this.files[0])" class="form-control"
                                 name="about_image" type="file" id="about_image">
                             </div>
                             @error('about_image')
@@ -103,7 +119,7 @@
                             @enderror
 
                             <div class="mb-3">
-                                <img class="img-fluid" src="{{asset($about->about_image ?? 'no-image.jpg')}}" id="newImg" width="150">
+                                <img class="img-fluid" src="{{asset($about->about_image ?? 'no-image.jpg')}}" id="newAboutImg" width="150">
                             </div>
 
                                 <div class="mt-5">

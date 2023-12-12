@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\PostController;
@@ -153,6 +154,14 @@ Route::prefix('admin/')->group(function(){
         Route::get('amenities-edit/{id}', 'editPage')->name('amenities.editPage');
         Route::post('amenities-update/{id}', 'update')->name('amenities.update');
         Route::get('amenities-destroy/{id}', 'destroy')->name('amenities.destroy');
+    });
+    Route::controller(RoomController::class)->group(function () {
+        Route::get('room', 'index')->name('room.page');
+        Route::get('room-create', 'create')->name('room.createPage');
+        Route::post('room-store', 'store')->name('room.store');
+        Route::get('room-edit/{id}', 'editPage')->name('room.editPage');
+        Route::post('room-update/{id}', 'update')->name('room.update');
+        Route::get('room-destroy/{id}', 'destroy')->name('room.destroy');
     });
 
 });
