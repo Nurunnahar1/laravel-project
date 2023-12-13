@@ -77,34 +77,81 @@ class RoomController extends Controller
         return redirect()->route('room.page')->with('success', 'Room data create successfully');
     }
 
-    // function editPage($id){
-    //     $slide_data = Slide::where('id', $id)->first();
-    //     return view('backend.pages.slide.edit',compact('slide_data'));
-    // }
+    function editPage($id){
+        $amenities = Amenities::get();
+        $room_data = Room::where('id', $id)->first();
 
-    // function update(Request $request,$id){
-    //     // echo $id;
-    //     $slide_data = Slide::where('id', $id)->first();
+        $existing_amenities = array();
+        if($room_data->amenities !=''){
+            $existing_amenities = explode(',',$room_data->amenities);
+        }
+        return view('backend.pages.room.edit',compact('room_data','amenities','existing_amenities'));
+    }
 
-    //     if($request->hasFile('photo')){
-    //         $request->validate([
-    //             'photo' => 'image|mimes:jpg,jpeg,png,gif',
-    //         ]);
-    //         unlink(public_path('uploads/slide/'.$slide_data->photo));
-    //         $ext = $request->file('photo')->extension();
-    //         $final_name = time().'.'.$ext;
-    //         $request->file('photo')->move(public_path('uploads/slide/'),$final_name);
-    //         $slide_data->photo = $final_name;
-    //     }
 
-    //     $slide_data->heading = $request->heading;
-    //     $slide_data->text = $request->text;
-    //     $slide_data->button_text = $request->button_text;
-    //     $slide_data->button_url = $request->button_url;
-    //     $slide_data->update();
 
-    //     return redirect()->route('slide.page')->with('success', 'Slide is update successfully.');
-    // }
+    function update(Request $request,$id){
+        // echo $id;
+            $room_data = Room::where('id', $id)->first();
+
+            $request->validate([
+                'name' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'amenities' => 'nullable',
+                'total_rooms' => 'required',
+                'room_size' => 'required',
+                'total_beds' => 'required',
+                'total_bathrooms' => 'required',
+                'total_balconies' => 'required',
+                'total_guests' => 'required',
+                'video_id' => 'required',
+            ]);
+
+
+            if($request->hasFile('featured_photo')){
+                $request->validate([
+                    'featured_photo' => 'required|image|mimes:png,jpg,jpeg,gif,webp'
+                ]);
+                unlink(public_path('uploads/room/'.$room_data->featured_photo));
+                $ext = $request->file('featured_photo')->extension();
+                $final_name = time().'.'.$ext;
+                $request->file('featured_photo')->move(public_path('uploads/room/'),$final_name);
+                $room_data->featured_photo = $final_name;
+            }
+
+            $amenities = '';
+            $i=0;
+            if(isset($request->arr_amenities)){
+                foreach($request->arr_amenities as $item){
+                    if($i==0){
+                        $amenities .= $item;
+                    }
+                    else{
+                        $amenities .= ','.$item;
+                    }
+                    $i++;
+                }
+            }
+
+
+
+
+            $room_data->name = $request->name;
+            $room_data->description = $request->description;
+            $room_data->price = $request->price;
+            $room_data->amenities = $amenities;
+            $room_data->total_rooms = $request->total_rooms;
+            $room_data->room_size = $request->room_size;
+            $room_data->total_beds = $request->total_beds;
+            $room_data->total_bathrooms = $request->total_bathrooms;
+            $room_data->total_balconies = $request->total_balconies;
+            $room_data->total_guests = $request->total_guests;
+            $room_data->video_id = $request->video_id;
+            $room_data->update();
+
+            return redirect()->route('room.page')->with('success', 'Room is update successfully.');
+    }
 
     // function destroy($id){
     //     $single_data = Slide::where('id', $id)->first();
