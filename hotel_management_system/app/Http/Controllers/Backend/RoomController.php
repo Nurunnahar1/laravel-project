@@ -153,10 +153,10 @@ class RoomController extends Controller
             return redirect()->route('room.page')->with('success', 'Room is update successfully.');
     }
 
-    // function destroy($id){
-    //     $single_data = Slide::where('id', $id)->first();
-    //     unlink(public_path('uploads/slide/'.$single_data->photo));
-    //     $single_data->delete();
-    //     return redirect()->route('slide.page')->with('success', 'Slide is Deleted successfully.');
-    // }
+    function destroy($id){
+        $single_data = Room::where('id', $id)->first();
+        unlink(public_path('uploads/room/'.$single_data->featured_photo));
+        $single_data->delete();
+        return redirect()->route('room.page')->with('success', 'Room is Deleted successfully.');
+    }
 }
