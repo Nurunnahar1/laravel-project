@@ -26,7 +26,7 @@
                                         <tr>
                                             <th>SL</th>
                                             <th>name</th>
-                                            <th>featured_photo</th> 
+                                            <th>featured_photo</th>
                                             <th>price</th>
                                             <th>amenities</th>
                                             <th>total_rooms</th>
@@ -53,6 +53,7 @@
                                                     <button class="btn btn-warning" data-toggle="modal"
                                                         data-target="#exampleModal{{ $i }}">Detail</button>
 
+                                                        <a href="{{ route('roomPhotoGallery.Page',$row->id) }}" class="btn btn-danger">Photo Gallery</a>
 
                                                     <a href="{{ route('room.editPage', $row->id) }}"
                                                         class="btn btn-primary">Edit</a>

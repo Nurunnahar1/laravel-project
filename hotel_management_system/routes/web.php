@@ -162,6 +162,12 @@ Route::prefix('admin/')->group(function(){
         Route::get('room-edit/{id}', 'editPage')->name('room.editPage');
         Route::post('room-update/{id}', 'update')->name('room.update');
         Route::get('room-destroy/{id}', 'destroy')->name('room.destroy');
+
+        //room photo gallery route
+        Route::get('room-gallery/{id}', 'roomPhotoGalleryPage')->name('roomPhotoGallery.Page');
+        Route::post('room-gallery-store/{id}', 'roomPhotoGallerystore')->name('roomPhotoGallery.store');
+        Route::get('room-gallery-delete/{id}', 'roomPhotoGalleryDelete')->name('roomPhotoGallery.delete');
     });
+
 
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Amenities;
 use App\Models\Room;
+use App\Models\RoomPhoto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -157,6 +158,46 @@ class RoomController extends Controller
         $single_data = Room::where('id', $id)->first();
         unlink(public_path('uploads/room/'.$single_data->featured_photo));
         $single_data->delete();
+
+        $room_photo_data = RoomPhoto::where('room_id', $id)->get();
+        foreach($room_photo_data as $room_photo){
+            unlink(public_path('uploads/roomPhoto/'.$room_photo->photo));
+            $room_photo->delete();
+        }
+
         return redirect()->route('room.page')->with('success', 'Room is Deleted successfully.');
     }
+
+
+    function roomPhotoGalleryPage($id){
+        $room_data = Room::where('id', $id)->first();
+        $room_photos = RoomPhoto::where('room_id', $id)->get();
+
+        return view('backend.pages.room.room_photo_create',compact('room_data','room_photos'));
+    }
+
+    function roomPhotoGallerystore(Request $request,$id){
+        $request->validate([
+            'photo'=>'required|image|mimes:png,jpg,jpeg,gif,webp'
+        ]);
+        $ext = $request->file('photo')->extension();
+        $final_name = time().'.'.$ext;
+        $request->file('photo')->move(public_path('uploads/roomPhoto'), $final_name);
+
+        $room = new RoomPhoto();
+
+        $room->photo = $final_name;
+        $room->room_id = $id;
+        $room->save();
+
+        return redirect()->back()->with('success', 'Photo added successfully');
+    }
+
+    function roomPhotoGalleryDelete($id){
+        $single_data = RoomPhoto::where('id', $id)->first();
+        unlink(public_path('uploads/roomPhoto/'.$single_data->photo));
+        $single_data->delete();
+        return redirect()->back()->with('success', 'Room Photo is Deleted successfully.');
+    }
+
 }
