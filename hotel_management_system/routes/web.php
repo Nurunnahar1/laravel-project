@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\RoomController;
+use App\Http\Controllers\Frontend\RoomController as FrontendRoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\PostController;
