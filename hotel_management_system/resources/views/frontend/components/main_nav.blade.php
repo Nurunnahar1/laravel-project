@@ -14,23 +14,16 @@
                     </li>
                     <li class="nav-item">
                         <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
+
                         <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a href="room-detail.html" class="nav-link">Regular Couple Bed</a>
+                            @foreach ($global_room_data as $item)
+                              <li class="nav-item">
+                                <a href="{{ route('room.details',$item->id) }}" class="nav-link">{{ $item->name }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="room-detail.html" class="nav-link">Delux Couple Bed</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="room-detail.html" class="nav-link">Regular Double Bed</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="room-detail.html" class="nav-link">Delux Double Bed</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="room-detail.html" class="nav-link">Premium Suite</a>
-                            </li>
+                            @endforeach
                         </ul>
+
+
                     </li>
                     <li class="nav-item">
                         <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>

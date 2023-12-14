@@ -47,6 +47,8 @@ Route::post('/contact-send-email',[FrontendContactController::class,'sendEmail']
 Route::post('/subscriber-send-email',[FrontendSubscriberController::class,'sendEmail'])->name('subscriber.sendEmail');
 Route::get('/subscriber-verify/{email}/{token}',[FrontendSubscriberController::class,'verify'])->name('subscriber.verify');
 
+Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->name('room.details');
+
 
 //=============Backend routes========
 Route::prefix('admin/')->group(function(){

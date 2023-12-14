@@ -48,7 +48,7 @@
 
                                 <div class="mb-4">
                                     <label class="form-label">Room Size </label>
-                                    <input type="number" class="form-control" name="room_size" >
+                                    <input type="text" class="form-control" name="room_size" >
                                 </div>
 
                                 <div class="mb-4">

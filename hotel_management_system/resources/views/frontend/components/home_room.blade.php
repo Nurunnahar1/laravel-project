@@ -13,18 +13,17 @@
                         <img src="{{ asset('uploads/room/'.$item->featured_photo) }}" alt="">
                     </div>
                     <div class="text">
-                        <h2><a href="">{{ $item->name }}</a></h2>
+                        <h2><a href="{{ route('room.details',$item->id) }}">{{ $item->name }}</a></h2>
                         <div class="price">
                             ${{ $item->price }}/night
                         </div>
                         <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
+                            <a href="{{ route('room.details',$item->id) }}" class="btn btn-primary">See Detail</a>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
-
 
         </div>
         <div class="row">
@@ -34,5 +33,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
