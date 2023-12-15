@@ -61,6 +61,8 @@ Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->
  Route::get('/customer-login',[CustomerAuthController::class,'loginPage'])->name('CustomerloginPage');
  Route::post('/customer-login',[CustomerAuthController::class,'login'])->name('customer.login');
  Route::get('/customer-signup',[CustomerAuthController::class,'signup'])->name('customer.signup');
+ Route::post('/customer-signup',[CustomerAuthController::class,'signupMethod'])->name('customer.signupMethod');
+ Route::get('/customer-verify/{email}/{token}',[CustomerAuthController::class,'customerVerify'])->name('customer.verify');
 
 
 Route::group(['middleware' => ['customer:customer']], function () {
