@@ -112,6 +112,18 @@
     </script>
 @endif
 
+@if (session()->get('error'))
+ <script>
+     iziToast.error({
+         title: '',
+         position: 'topRight',
+
+         message: '{{ session()->get('error') }}',
+     });
+ </script>
+
+@endif
+
 <script>
     (function($){
         $(".form_subscriber_ajax").on('submit', function(event){

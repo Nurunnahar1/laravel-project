@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-<p>{{ $message }}</p>
+ <a href="{{ $message }}">Click Here</a>
 </body>
 </html>

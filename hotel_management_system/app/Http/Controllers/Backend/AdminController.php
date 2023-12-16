@@ -55,7 +55,7 @@ class AdminController extends Controller
         $admin_data->update();
 
         $reset_link = url('admin/reset-password/'.$token.'/'.$request->email);
-        $message = 'Please click on this link: <br><a href="'.$reset_link.'">Click here</a>';
+        $message = $reset_link ;
         Mail::to($request->email)->send(new AdminMail($message));
         return redirect()->route('loginPage')->with('success', 'Please check your email and follow the steps');
     }

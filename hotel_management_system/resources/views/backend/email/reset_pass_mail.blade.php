@@ -5,6 +5,6 @@
     <title>email</title>
 </head>
 <body>
-<p>{{ $body }}</p>
+ <a href="{{ $body }}">Click Here</a>
 </body>
 </html>

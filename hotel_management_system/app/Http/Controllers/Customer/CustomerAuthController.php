@@ -36,14 +36,11 @@ class CustomerAuthController extends Controller
         $obj->email = $request->email;
         $obj->password = $password;
         $obj->token = $token;
+        $obj->status = 0;
         $obj->save();
 
         //send email
-        $message = 'Please click on this link: <br><a href="'.$verification_link.'">Click here</a>';
-        // $message = 'Please click on the link below to verify your account<br>';
-        // $message .= '<a href="' . $verification_link . '">';
-        // $message .= $verification_link;
-        // $message .= '</a>';
+        $message = $verification_link;
         \Mail::to($request->email)->send(new CustomerMail($message));
 
          return redirect()->back()->with('success', 'Complete signup,Please check your email and click on the link');
@@ -51,7 +48,35 @@ class CustomerAuthController extends Controller
 
 
     function customerVerify($email,$token){
+        $customer_data = Customer::where('email', $email)->where('token', $token)->first();
+        if($customer_data){
+            $customer_data->token = '';
+            $customer_data->status = 1;
+            $customer_data->update();
 
+            return redirect()->route('CustomerloginPage')->with('success', 'Your subscription is verified
+            successfully!');
+        }
+        else{
+            return redirect()->route('CustomerloginPage');
+        }
+    }
+
+    function login(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credential =[
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+        if(Auth::guard('customer')->attempt($credential)){
+            return redirect()->route('customer.home');
+        }else{
+            return redirect()->route('CustomerloginPage')->with('error', 'Information is not Correct');
+        }
     }
 
        function logout(){
