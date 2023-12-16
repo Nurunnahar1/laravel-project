@@ -81,27 +81,50 @@ class CustomerAuthController extends Controller
     function forgetPassPage(){
     return view('frontend.customer.forget_pass');
     }
+    function forgetPass(Request $request){
+        $request->validate([
+        'email' => 'required|email',
+        ]);
+        $customer_data = Customer::where('email', $request->email)->first();
+        if(!$customer_data){
+        return redirect()->back()->with('error', 'Email address not found !!');
+        }
+        $token = Hash('sha256', time());
+        $customer_data->token = $token;
+        $customer_data->update();
+
+        $reset_link = url('customer-reset-password/'.$token.'/'.$request->email);
+        $message = $reset_link ;
+        Mail::to($request->email)->send(new Customer_reset_pass($message));
+        return redirect()->route('CustomerloginPage')->with('success', 'Please check on the following link to reset password');
+    }
+
+    function resetPassPage($token,$email){
+        $customer_data = Customer::where('email', $email)->where('token', $token)->first();
+        if(!$customer_data){
+            return redirect()->route('CustomerloginPage');
+        }
+        return view('frontend.customer.reset_pass',compact('token','email'));
+    }
 
 
-     function forgetPass(Request $request){
-     $request->validate([
-     'email' => 'required|email',
-     ]);
-     $customer_data = Customer::where('email', $request->email)->first();
-     if(!$customer_data){
-     return redirect()->back()->with('error', 'Email address not found !!');
-     }
-     $token = Hash('sha256', time());
-     $customer_data->token = $token;
-     $customer_data->update();
-
-     $reset_link = url('customer-reset-password/'.$token.'/'.$request->email);
-     $message = $reset_link ;
-     Mail::to($request->email)->send(new Customer_reset_pass($message));
-     return redirect()->route('CustomerloginPage')->with('success', 'Please check on the following link to reset password');
-     }
 
 
 
+
+    function resetPass(Request $request){
+        $request->validate([
+        'password' => 'required',
+        'retype_password' => 'required|same:password'
+        ]);
+        // dd($request->password);
+
+        $customer_data = Customer::where('token',$request->token)->where('email',$request->email)->first();
+
+        $customer_data->password = Hash::make($request->password);
+        $customer_data->token = '';
+        $customer_data->update();
+        return redirect()->route('CustomerloginPage')->with('success', 'Password is reset successfully');
+    }
 
 }
