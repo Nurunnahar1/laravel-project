@@ -65,6 +65,17 @@ Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->
  Route::get('/customer-verify/{email}/{token}',[CustomerAuthController::class,'customerVerify'])->name('customer.verify');
 
 
+ Route::get('/customer-forget-password',[CustomerAuthController::class,'forgetPassPage'])->name('customer.forgetPassPage');
+ Route::post('/customer-forget-password',[CustomerAuthController::class,'forgetPass'])->name('customer.forget.password');
+ Route::get('/customer-reset-password/{email}/{token}',[CustomerAuthController::class,'resetPassPage'])->name('customer.reset.passwordPage');
+ Route::post('/customer-reset-password',[CustomerAuthController::class,'resetPass'])->name('customer.reset.password');
+
+//   Route::get('forget-password', 'forgetPassPage')->name('forget.passwordPage');
+//   Route::post('forget-password', 'forgetPass')->name('admin.forget.password');
+//   Route::get('reset-password/{token}/{email}', 'resetPassPage')->name('reset.passwordPage');
+//   Route::post('reset-password', 'resetPass')->name('admin.reset.password');
+
+
 Route::group(['middleware' => ['customer:customer']], function () {
     Route::get('/customer-home',[CustomerHomeController::class,'index'])->name('customer.home');
     Route::get('/customer-edit-profile',[CustomerProfileController::class,'profile'])->name('customer.profile');

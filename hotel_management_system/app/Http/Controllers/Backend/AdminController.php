@@ -36,7 +36,7 @@ class AdminController extends Controller
         }else{
              return redirect()->route('loginPage')->with('error', 'Information is not Correct');
         }
-      }
+    }
       function logout(){
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');

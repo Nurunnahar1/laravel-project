@@ -12,8 +12,12 @@
             <a href="" target="_blank" class="btn btn-warning">Front End</a>
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ asset('uploads/'.Auth::guard('customer')->user()->photo) }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">{{ Auth::guard('customer')->user()->name }}</div></a>
+             @if (Auth::guard('customer')->user()->photo == '')
+             <img alt="image" src="{{ asset('uploads/default.png') }}" class="rounded-circle mr-1">
+             @else
+             <div class="d-sm-none d-lg-inline-block">{{ Auth::guard('customer')->user()->name }}</div></a>
+             @endif
+
             <div class="dropdown-menu dropdown-menu-right">
                 <a href=" " class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Edit Profile

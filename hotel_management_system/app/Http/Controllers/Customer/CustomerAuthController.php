@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Mail\CustomerMail;
 use App\Models\Customer;
+use App\Mail\CustomerMail;
 use Illuminate\Http\Request;
+use App\Mail\Customer_reset_pass;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerAuthController extends Controller
 {
@@ -17,9 +19,6 @@ class CustomerAuthController extends Controller
     function signup(){
         return view('frontend.customer.signup');
     }
-
-
-
     function signupMethod(Request $request)
     {
          $request->validate([
@@ -45,8 +44,6 @@ class CustomerAuthController extends Controller
 
          return redirect()->back()->with('success', 'Complete signup,Please check your email and click on the link');
     }
-
-
     function customerVerify($email,$token){
         $customer_data = Customer::where('email', $email)->where('token', $token)->first();
         if($customer_data){
@@ -61,7 +58,6 @@ class CustomerAuthController extends Controller
             return redirect()->route('CustomerloginPage');
         }
     }
-
     function login(Request $request){
         $request->validate([
             'email' => 'required|email',
@@ -78,9 +74,34 @@ class CustomerAuthController extends Controller
             return redirect()->route('CustomerloginPage')->with('error', 'Information is not Correct');
         }
     }
+    function logout(){
+    Auth::guard('customer')->logout();
+    return redirect()->route('CustomerloginPage');
+    }
+    function forgetPassPage(){
+    return view('frontend.customer.forget_pass');
+    }
 
-       function logout(){
-       Auth::guard('customer')->logout();
-       return redirect()->route('CustomerloginPage');
-       }
+
+     function forgetPass(Request $request){
+     $request->validate([
+     'email' => 'required|email',
+     ]);
+     $customer_data = Customer::where('email', $request->email)->first();
+     if(!$customer_data){
+     return redirect()->back()->with('error', 'Email address not found !!');
+     }
+     $token = Hash('sha256', time());
+     $customer_data->token = $token;
+     $customer_data->update();
+
+     $reset_link = url('customer-reset-password/'.$token.'/'.$request->email);
+     $message = $reset_link ;
+     Mail::to($request->email)->send(new Customer_reset_pass($message));
+     return redirect()->route('CustomerloginPage')->with('success', 'Please check on the following link to reset password');
+     }
+
+
+
+
 }
