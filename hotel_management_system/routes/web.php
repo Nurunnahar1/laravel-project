@@ -73,8 +73,8 @@ Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->
 
 
 Route::group(['middleware' => ['customer:customer']], function () {
-
     Route::get('/customer-home',[CustomerHomeController::class,'index'])->name('customer.home');
+
     Route::get('/customer-edit-profile',[CustomerProfileController::class,'profile'])->name('customer.profile');
     Route::post('/customer-edit-profile',[CustomerProfileController::class,'profileMethod'])->name('customer.profileMethod');
 

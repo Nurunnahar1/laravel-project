@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
 
 
-    <title>Admin Panel</title>
+    <title>Customer Dashboard</title>
 
     @include('customer.components.style')
     @include('customer.components.script')

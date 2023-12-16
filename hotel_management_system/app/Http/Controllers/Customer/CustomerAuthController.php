@@ -106,25 +106,25 @@ class CustomerAuthController extends Controller
         }
         return view('frontend.customer.reset_pass',compact('token','email'));
     }
+    
+        function resetPass(Request $request){
+            $request->validate([
+            'password' => 'required',
+            'retype_password' => 'required|same:password'
+            ]);
+            // dd($request->password);
+
+            $customer_data = Customer::where('token',$request->token)->where('email',$request->email)->first();
+
+            $customer_data->password = Hash::make($request->password);
+            $customer_data->token = '';
+            $customer_data->update();
+            return redirect()->route('CustomerloginPage')->with('success', 'Password is reset successfully');
+        }
 
 
 
 
 
-
-    function resetPass(Request $request){
-        $request->validate([
-        'password' => 'required',
-        'retype_password' => 'required|same:password'
-        ]);
-        // dd($request->password);
-
-        $customer_data = Customer::where('token',$request->token)->where('email',$request->email)->first();
-
-        $customer_data->password = Hash::make($request->password);
-        $customer_data->token = '';
-        $customer_data->update();
-        return redirect()->route('CustomerloginPage')->with('success', 'Password is reset successfully');
-    }
 
 }

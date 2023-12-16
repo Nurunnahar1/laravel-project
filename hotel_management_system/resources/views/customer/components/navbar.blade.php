@@ -19,7 +19,7 @@
              @endif
 
             <div class="dropdown-menu dropdown-menu-right">
-                <a href=" " class="dropdown-item has-icon">
+                <a href="{{ route('customer.profile') }} " class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Edit Profile
                 </a>
                 <a href="{{ route('customer.logout') }}" class="dropdown-item has-icon text-danger">
