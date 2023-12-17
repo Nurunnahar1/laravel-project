@@ -33,6 +33,7 @@
     </div>
 
     @include('customer.components.footer_script')
+    
 
     @include('customer.components.toastr_msg')
 

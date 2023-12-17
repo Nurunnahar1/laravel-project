@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\PostController;
@@ -44,14 +45,14 @@ Route::get('/about',[FrontndAboutController::class,'index'])->name('about');
 Route::get('/term',[FrontentTermController::class,'index'])->name('term');
 Route::get('/privacy',[FrontendPrivacyController::class,'index'])->name('privacy');
 Route::get('/contact',[FrontendContactController::class,'index'])->name('contact');
-
 Route::post('/contact-send-email',[FrontendContactController::class,'sendEmail'])->name('contact.sendEmail');
-
 Route::post('/subscriber-send-email',[FrontendSubscriberController::class,'sendEmail'])->name('subscriber.sendEmail');
 Route::get('/subscriber-verify/{email}/{token}',[FrontendSubscriberController::class,'verify'])->name('subscriber.verify');
-
 Route::get('/room',[FrontendRoomController::class,'index'])->name('room');
 Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->name('room.details');
+
+
+
 
 
 
@@ -63,12 +64,14 @@ Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->
  Route::get('/customer-signup',[CustomerAuthController::class,'signup'])->name('customer.signup');
  Route::post('/customer-signup',[CustomerAuthController::class,'signupMethod'])->name('customer.signupMethod');
  Route::get('/customer-verify/{email}/{token}',[CustomerAuthController::class,'customerVerify'])->name('customer.verify');
-
-
  Route::get('/customer-forget-password',[CustomerAuthController::class,'forgetPassPage'])->name('customer.forgetPassPage');
  Route::post('/customer-forget-password',[CustomerAuthController::class,'forgetPass'])->name('customer.forget.password');
  Route::get('/customer-reset-password/{email}/{token}',[CustomerAuthController::class,'resetPassPage'])->name('customer.reset.passwordPage');
  Route::post('/customer-reset-password',[CustomerAuthController::class,'resetPass'])->name('customer.reset.password');
+ Route::post('/booking',[BookingController::class,'cartMethod'])->name('cartMethod');
+ Route::get('/booking',[BookingController::class,'cartPage'])->name('cartPage');
+
+
 
 
 

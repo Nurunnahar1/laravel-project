@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-6 right-side">
                 <ul class="right">
-                    <li class="menu"><a href="cart.html">Cart</a></li>
+                    <li class="menu"><a href="{{ route('cartPage') }}">Cart</a></li>
                     <li class="menu"><a href="checkout.html">Checkout</a></li>
                     <li class="menu"><a href="{{ route('customer.signup') }}">Sign Up</a></li>
                     <li class="menu"><a href="{{ route('CustomerloginPage') }}">Login</a></li>

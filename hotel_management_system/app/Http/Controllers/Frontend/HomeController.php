@@ -18,6 +18,9 @@ class HomeController extends Controller
         $testimonials = Testimonial::get();
         $posts = Post::orderBy('id', 'desc')->limit(3)->get();
         $room_data = Room::get();
+
+        // dd(session()->get('cart_room_id'));
+
         return view('frontend.home',compact('slides','features','testimonials','posts','room_data'));
     }
 }

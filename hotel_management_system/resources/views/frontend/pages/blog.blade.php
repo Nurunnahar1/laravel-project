@@ -1,5 +1,5 @@
  @extends('frontend.layout.app')
  @section('content')
- @include('frontend.components.blog')
+     @include('frontend.components.blog')
 
- @endsection
+  
