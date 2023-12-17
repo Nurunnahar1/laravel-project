@@ -69,6 +69,8 @@
                                         $i++;
                                     }
 
+                                    $total_price = 0;
+
 
                                    for ($i = 0; $i < count($arr_cart_room_id); $i++)
                                    {
@@ -92,7 +94,36 @@
                                             Adult: {{ $arr_cart_adult[$i] }}<br>
                                             Children: {{ $arr_cart_children[$i] }}
                                         </td>
-                                        <td>$60</td>
+                                        <td>$
+                                            @php
+
+
+
+                                                $checkin_date = trim($arr_cart_checkin_date[$i]);
+                                                $checkout_date = trim($arr_cart_checkout_date[$i]);
+
+                                                $datetime1 = DateTime::createFromFormat('d/m/Y', $checkin_date);
+                                                $datetime2 = DateTime::createFromFormat('d/m/Y', $checkout_date);
+
+                                                if ($datetime1 && $datetime2) {
+                                                    $interval = $datetime1->diff($datetime2);
+                                                    $days_difference = $interval->days;
+
+                                                    // echo "Difference in days: " . $days_difference;
+
+                                                    echo $subtotal = $days_difference*($room_data->price);
+                                                } else {
+                                                    echo "Failed to parse date strings.";
+                                                }
+
+
+
+
+
+                                            @endphp
+
+
+                                        </td>
                                     </tr>
 
 
@@ -101,47 +132,30 @@
 
 
                                 @php
+                                 echo $total_prices =( $total_price + $subtotal);
                                     }
                                 @endphp
+<tr>
+    <td colspan="8" class="tar">Total:</td>
+    <td>${{ $total_price }}</td>
+</tr>
+</tbody>
+</table>
+</div>
 
+<div class="checkout mb_20">
+<a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
+</div>
 
-                                {{-- <tr>
-                                    <td>
-                                        <a href="" class="cart-delete-link"
-                                            onclick="return confirm('Are you sure?');"><i class="fa fa-times"></i></a>
-                                    </td>
-                                    <td>1</td>
-                                    <td><img src="uploads/2.jpg"></td>
-                                    <td>
-                                        <a href="room-detail.html" class="room-name">Regular Couple Bed</a>
-                                    </td>
-                                    <td>$30</td>
-                                    <td>05/07/2022</td>
-                                    <td>07/07/2022</td>
-                                    <td>
-                                        Adult: 2<br>
-                                        Children: 0
-                                    </td>
-                                    <td>$60</td>
-                                </tr> --}}
-
-
-
-
-                                <tr>
-                                    <td colspan="8" class="tar">Total:</td>
-                                    <td>$160</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="checkout mb_20">
-                        <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 @endsection
+
+
+
+
+
+
+
