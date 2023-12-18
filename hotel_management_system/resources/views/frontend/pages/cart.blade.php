@@ -69,7 +69,7 @@
                                         $i++;
                                     }
 
-                                    $total_price = 0;
+                                   $total_prices = 0;
 
 
                                    for ($i = 0; $i < count($arr_cart_room_id); $i++)
@@ -96,9 +96,6 @@
                                         </td>
                                         <td>$
                                             @php
-
-
-
                                                 $checkin_date = trim($arr_cart_checkin_date[$i]);
                                                 $checkout_date = trim($arr_cart_checkout_date[$i]);
 
@@ -108,50 +105,49 @@
                                                 if ($datetime1 && $datetime2) {
                                                     $interval = $datetime1->diff($datetime2);
                                                     $days_difference = $interval->days;
-
-                                                    // echo "Difference in days: " . $days_difference;
-
                                                     echo $subtotal = $days_difference*($room_data->price);
                                                 } else {
                                                     echo "Failed to parse date strings.";
                                                 }
-
-
-
-
-
                                             @endphp
-
-
                                         </td>
                                     </tr>
-
-
-
-
-
-
                                 @php
-                                 echo $total_prices =( $total_price + $subtotal);
+                                 $total_prices += $subtotal;
                                     }
                                 @endphp
-<tr>
-    <td colspan="8" class="tar">Total:</td>
-    <td>${{ $total_price }}</td>
-</tr>
-</tbody>
-</table>
-</div>
+                                <tr>
+                                    <td colspan="8" class="tar">Total:</td>
+                                    <td>${{ $total_prices }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="checkout mb_20">
+                    <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
+                </div>
+            </div>
+        </div>
+    @endsection
 
-<div class="checkout mb_20">
-<a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
-</div>
 
-</div>
-</div>
-</div>
-</div>
-@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
