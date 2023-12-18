@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerProfileController extends Controller
 {
+
+    function index(){
+        return view('customer.components.dashboard');
+    }
     function profile(){
         return view('frontend.customer.customer_profile');
     }

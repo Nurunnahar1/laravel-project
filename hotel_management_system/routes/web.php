@@ -58,29 +58,37 @@ Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->
 
 
 //customer routes=================================
- Route::get('/customer-logout',[CustomerAuthController::class,'logout'])->name('customer.logout');
- Route::get('/customer-login',[CustomerAuthController::class,'loginPage'])->name('CustomerloginPage');
- Route::post('/customer-login',[CustomerAuthController::class,'login'])->name('customer.login');
- Route::get('/customer-signup',[CustomerAuthController::class,'signup'])->name('customer.signup');
- Route::post('/customer-signup',[CustomerAuthController::class,'signupMethod'])->name('customer.signupMethod');
- Route::get('/customer-verify/{email}/{token}',[CustomerAuthController::class,'customerVerify'])->name('customer.verify');
- Route::get('/customer-forget-password',[CustomerAuthController::class,'forgetPassPage'])->name('customer.forgetPassPage');
- Route::post('/customer-forget-password',[CustomerAuthController::class,'forgetPass'])->name('customer.forget.password');
- Route::get('/customer-reset-password/{email}/{token}',[CustomerAuthController::class,'resetPassPage'])->name('customer.reset.passwordPage');
- Route::post('/customer-reset-password',[CustomerAuthController::class,'resetPass'])->name('customer.reset.password');
- Route::post('/booking',[BookingController::class,'cartMethod'])->name('cartMethod');
- Route::get('/add-to-cart',[BookingController::class,'cartPage'])->name('cartPage');
- Route::get('/cart-delete/{id}',[BookingController::class,'cartDelete'])->name('cartDelete');
-
-
-
+Route::controller(CustomerAuthController::class)->group(function () {
+     Route::get('/customer-logout','logout')->name('customer.logout');
+     Route::get('/customer-login','loginPage')->name('CustomerloginPage');
+     Route::post('/customer-login','login')->name('customer.login');
+     Route::get('/customer-signup','signup')->name('customer.signup');
+     Route::post('/customer-signup','signupMethod')->name('customer.signupMethod');
+     Route::get('/customer-verify/{email}/{token}','customerVerify')->name('customer.verify');
+     Route::get('/customer-forget-password','forgetPassPage')->name('customer.forgetPassPage');
+     Route::post('/customer-forget-password','forgetPass')->name('customer.forget.password');
+     Route::get('/customer-reset-password/{email}/{token}','resetPassPage')->name('customer.reset.passwordPage');
+     Route::post('/customer-reset-password','resetPass')->name('customer.reset.password');
+});
 
 
 Route::group(['middleware' => ['customer:customer']], function () {
-    Route::get('/customer-home',[CustomerHomeController::class,'index'])->name('customer.home');
+    Route::controller(CustomerProfileController::class)->group(function () {
+        Route::get('/customer-home','index')->name('customer.home');
+        Route::get('/customer-edit-profile','profile')->name('customer.profile');
+        Route::post('/customer-edit-profile','profileMethod')->name('customer.profileMethod');
+    });
+     Route::controller(BookingController::class)->group(function () {
+        Route::post('/booking','cartMethod')->name('cartMethod');
+        Route::get('/add-to-cart','cartPage')->name('cartPage');
+        Route::get('/cart-delete/{id}','cartDelete')->name('cartDelete');
+        Route::get('/checkout','checkoutPage')->name('checkoutPage');
+     });
 
-    Route::get('/customer-edit-profile',[CustomerProfileController::class,'profile'])->name('customer.profile');
-    Route::post('/customer-edit-profile',[CustomerProfileController::class,'profileMethod'])->name('customer.profileMethod');
+
+
+
+
 
 
 });

@@ -1,2 +1,9 @@
-@extends('backend.layout.app')
-@section('title') Dashboard @endsection
+
+
+
+@extends('customer.home');
+@section('content')
+
+
+@endsection
+
