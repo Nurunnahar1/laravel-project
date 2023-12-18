@@ -16,6 +16,8 @@
             <div class="row cart">
                 <div class="col-md-12">
 
+                    @if(session()->has('cart_room_id'))
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-cart">
                             <thead>
@@ -78,7 +80,7 @@
                                 @endphp
                                     <tr>
                                         <td>
-                                            <a href="" class="cart-delete-link"
+                                            <a href="{{ route('cartDelete',$arr_cart_room_id[$i]) }}" class="cart-delete-link"
                                                 onclick="return confirm('Are you sure?');"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td>{{ $i+1 }}</td>
@@ -123,11 +125,19 @@
                             </tbody>
                         </table>
                     </div>
+
                     <div class="checkout mb_20">
-                    <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
+                        <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
+                    </div>
+
+                    @else
+                    <div class="text-danger mb-3">Cart is empty !</div>
+                    @endif
+
                 </div>
             </div>
         </div>
+    </div>
     @endsection
 
 

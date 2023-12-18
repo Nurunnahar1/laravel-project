@@ -69,7 +69,8 @@ Route::get('/room-details/{id}',[FrontendRoomController::class,'roomDetails'])->
  Route::get('/customer-reset-password/{email}/{token}',[CustomerAuthController::class,'resetPassPage'])->name('customer.reset.passwordPage');
  Route::post('/customer-reset-password',[CustomerAuthController::class,'resetPass'])->name('customer.reset.password');
  Route::post('/booking',[BookingController::class,'cartMethod'])->name('cartMethod');
- Route::get('/booking',[BookingController::class,'cartPage'])->name('cartPage');
+ Route::get('/add-to-cart',[BookingController::class,'cartPage'])->name('cartPage');
+ Route::get('/cart-delete/{id}',[BookingController::class,'cartDelete'])->name('cartDelete');
 
 
 
