@@ -1,5 +1,6 @@
 @extends('frontend.layout.app')
 @section('content')
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <div class="page-top">
         <div class="bg"></div>
         <div class="container">
@@ -25,7 +26,7 @@
 
                     <div class="paypal mt_20">
                         <h4>Pay with PayPal</h4>
-                        <p>Write necessary code here</p>
+                        <div id="paypal-button"></div>
                     </div>
 
                     <div class="stripe mt_20">
@@ -100,4 +101,45 @@
             </div>
         </div>
     </div>
+@php
+    $client = 'ARJ2bbdI_PrsIVJXX7eyeO8CBP93LTedk7NUbvpkdEmQa_vHWYe2A__TdByQe2G-vj0WXcS_3K0ZHhSe';
+@endphp
+
+
+<script>
+    paypal.Button.render({
+        env: 'sandbox',
+        client:{
+            sandbox: '{{ $client }}',
+            production: '{{ $client }}'
+        },
+        locale: 'en_US',
+        style: {
+            size: 'medium',
+            color: 'blue',
+            shape: 'rect',
+        },
+
+        //set up a payment
+        payment: function (data, actions){
+            return actions.payment.create({
+                redirect_urls: '{{ url("payment/paypal") }}'
+            },
+            transactions: [{
+                amount: {
+                    total: ' ',
+                    currency:
+                }
+            }]
+
+
+            )
+        },
+        //Execute the payment
+        onAuthorize: function (data, actions){
+            return actions.redirect();
+        }
+    }, '#paypal-button');
+</script>
+
 @endsection

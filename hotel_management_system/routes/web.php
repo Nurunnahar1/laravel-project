@@ -84,6 +84,8 @@ Route::group(['middleware' => ['customer:customer']], function () {
         Route::get('/cart-delete/{id}','cartDelete')->name('cartDelete');
         Route::get('/checkout','checkoutPage')->name('checkoutPage');
         Route::post('/payment','payment')->name('payment');
+
+        Route::get('/payment/paypal','paypal')->name('paypal');
      });
 
 
