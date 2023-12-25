@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 @section('content')
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+{{-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> --}}
     <div class="page-top">
         <div class="bg"></div>
         <div class="container">
@@ -25,8 +25,13 @@
                     </select>
 
                     <div class="paypal mt_20">
+
                         <h4>Pay with PayPal</h4>
-                        <div id="paypal-button"></div>
+                        <form action="{{ route('paypal') }}" method="POST">
+                           @csrf
+                           <div id="paypal-button" class="text-warning btn btn-dark ">Paypal</div>
+
+                        </form>
                     </div>
 
                     <div class="stripe mt_20">
@@ -37,9 +42,6 @@
                 </div>
                 <div class="col-lg-4 col-md-4 checkout-left mb_30">
                         <h4 class="mb_10">Billing Details</h4>
-
-
-
                         <div>Name: {{ session()->get('billing_name') }}</div>
                         <div>Email: {{ session()->get('billing_email') }}</div>
                         <div>Phone: {{ session()->get('billing_phone') }}</div>
@@ -48,8 +50,11 @@
                         <div>State: {{ session()->get('billing_state') }}</div>
                         <div>City: {{ session()->get('billing_city') }}</div>
                         <div>Zip: {{ session()->get('billing_zip') }}</div>
-
                 </div>
+
+
+
+
 
                 <div class="col-lg-4 col-md-4 checkout-right">
                     <div class="inner">
@@ -101,15 +106,16 @@
             </div>
         </div>
     </div>
-@php
+  {{-- @php
     $client = 'ARJ2bbdI_PrsIVJXX7eyeO8CBP93LTedk7NUbvpkdEmQa_vHWYe2A__TdByQe2G-vj0WXcS_3K0ZHhSe';
+    $final_price = '100';
 @endphp
 
 
 <script>
     paypal.Button.render({
         env: 'sandbox',
-        client:{
+        client: {
             sandbox: '{{ $client }}',
             production: '{{ $client }}'
         },
@@ -120,26 +126,23 @@
             shape: 'rect',
         },
 
-        //set up a payment
-        payment: function (data, actions){
+        // set up a payment
+        payment: function (data, actions) {
             return actions.payment.create({
-                redirect_urls: '{{ url("payment/paypal") }}'
-            },
-            transactions: [{
-                amount: {
-                    total: ' ',
-                    currency:
-                }
-            }]
-
-
-            )
+                transactions: [{
+                    amount: {
+                        total: '{{ $final_price }}',
+                        currency: 'USD'
+                    }
+                }]
+            });
         },
-        //Execute the payment
-        onAuthorize: function (data, actions){
+
+        // Execute the payment
+        onAuthorize: function (data, actions) {
             return actions.redirect();
         }
     }, '#paypal-button');
-</script>
+</script> --}}
 
 @endsection

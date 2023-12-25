@@ -85,7 +85,7 @@ Route::group(['middleware' => ['customer:customer']], function () {
         Route::get('/checkout','checkoutPage')->name('checkoutPage');
         Route::post('/payment','payment')->name('payment');
 
-        Route::get('/payment/paypal','paypal')->name('paypal');
+        Route::post('/payment-paypal','paypal')->name('paypal');
      });
 
 

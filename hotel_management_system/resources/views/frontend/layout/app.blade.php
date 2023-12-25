@@ -9,6 +9,8 @@
     @include('frontend.components.inc.style')
     @include('frontend.components.inc.script')
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500&display=swap" rel="stylesheet">
+
+    {{-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> --}}
 </head>
 
 <body>
@@ -29,7 +31,7 @@
 
     @include('frontend.components.footer')
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
-   
+
 
 </body>
 
