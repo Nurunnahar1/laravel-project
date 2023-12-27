@@ -14,7 +14,6 @@
 </head>
 
 <body>
-
     @include('frontend.components.topbar')
     <div class="navbar-area" id="stickymenu">
         <!-- Menu For Mobile Device -->
@@ -32,7 +31,8 @@
     @include('frontend.components.footer')
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
 </body>
-
 </html>
+
+
 
 
